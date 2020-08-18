@@ -1,0 +1,84 @@
+{
+  "name": "fsxa-nuxt-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/module/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "templates",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint src/**/*",
+    "prebuild": "rimraf dist",
+    "build": "npm run clean && tsc && cpx \"src/**/*.vue\" dist",
+    "clean": "rm -rf dist",
+    "dev": "cd example && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
+    "prepush": "npm run build",
+    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
+  },
+  "license": "Apache-2.0",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "keywords": [],
+  "author": "Tobias Golbs <golbs@e-spirit.com>",
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@nuxt/types": "^2.14.1",
+    "@nuxtjs/axios": "^5.12.1",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^26.0.9",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/node": "^14.0.27",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "commitizen": "^4.1.2",
+    "cpx": "^1.5.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "express": "^4.17.1",
+    "fsxa-ui": "^0.1.38",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "lodash.merge": "^4.6.2",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cross-fetch": "^3.0.5",
+    "fsxa-api": "^1.0.0",
+    "fsxa-pattern-library": "^1.0.0",
+    "fsxa-ui": "0.1.38",
+    "vuex": "^3.5.1"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e-Spirit/fsxa-nuxt-module.git"
+  }
+}

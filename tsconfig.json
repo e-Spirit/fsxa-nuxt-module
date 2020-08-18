@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["dom"],
+    "esModuleInterop": true,
+    "strict": false,
+    "declaration": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "types": ["@types/node", "@nuxt/types"]
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
+}
