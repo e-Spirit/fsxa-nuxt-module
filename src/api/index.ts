@@ -1,8 +1,10 @@
-import express from "express";
-import FSXAApi, { FSXAContentMode } from "fsxa-api";
-import "cross-fetch/polyfill";
+// eslint-disable-next-line
+const express = require("express");
+// eslint-disable-next-line
+const FSXAApi = require("fsxa-api");
+require("cross-fetch/polyfill");
 
-const fsxaAPI = new FSXAApi(process.env.FSXA_MODE as FSXAContentMode, {
+const fsxaAPI = new FSXAApi(process.env.FSXA_MODE, {
   mode: "remote",
   config: {
     apiKey: process.env.FSXA_API_KEY,
