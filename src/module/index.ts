@@ -8,6 +8,9 @@ export interface FSXAModuleOptions {
   includeFSXAUI: boolean;
   sections: string;
   layouts: string;
+  appLayoutComponent?: string;
+  navigationComponent?: string;
+  loaderComponent?: string;
   devMode: boolean;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
@@ -45,17 +48,29 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     this.options.dir.store === "store" &&
     isDirEmptyOrNotExisting(join(this.options.srcDir, "store"))
   ) {
-    console.log("Store Folder empty or not found");
     // we are trying to extend the config
     this.options.dir.store = join(srcDir, "store");
-    console.log(this.nuxt);
   }
 
   // add fsxa-ui css if allowed
   if (options.includeFSXAUI) {
-    this.options.css.unshift("fsxa-ui/dist/fsxa-ui.css");
-    this.options.build.transpile.push(/^fsxa-ui/);
+    //
+    this.nuxt.hook("build:before", () => {
+      // Use bootstrap-vue source code for smaller prod builds
+      // by aliasing 'bootstrap-vue' to the source files
+      this.options.css.unshift(require.resolve("fsxa-ui/dist/fsxa-ui.css"));
+      this.extendBuild((config) => {
+        if (!config.resolve.alias) {
+          config.resolve.alias = {};
+        }
+        // We prepend a $ to ensure that it is only used for
+        // `import from 'fsxa-ui'` not `import from 'fsxa-ui/*'`
+        config.resolve.alias["fsxa-ui$"] = require.resolve("fsxa-ui");
+        this.options.build.transpile.push("fsxa-ui/src");
+      });
+    });
   }
+
   this.options.build.transpile.push(/^fsxa-pattern-library/);
 
   // Transpile and alias fsxa src
@@ -66,16 +81,20 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   const layoutsPath = this.nuxt.resolver.resolveAlias(options.layouts);
   const sectionsPath = this.nuxt.resolver.resolveAlias(options.sections);
 
-  // Add plugin
+  // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
     src: resolve(__dirname, "../../templates/IndexPage.vue"),
     fileName: join("fsxa/IndexPage.vue"),
     options: {
       layoutsPath,
       sectionsPath,
+      appLayoutComponent: options.appLayoutComponent,
+      navigationComponent: options.navigationComponent,
+      loaderComponent: options.loaderComponent,
     },
   });
 
+  // extend routing configuration and add compiled component
   this.options.router.extendRoutes = (routes, resolve) => {
     routes.push({
       name: "fsxa-page",
@@ -99,7 +118,6 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     fileName: join("fsxa.js"),
     options: {},
   });
-
   this.options.plugins.push(resolve(this.options.buildDir, compiledPlugin.dst));
 };
 export default FSXAModule;

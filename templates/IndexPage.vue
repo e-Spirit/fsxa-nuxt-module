@@ -7,11 +7,19 @@
     :sections="sections"
     :locales="locales"
     :handle-route-change="handleRouteChange"
+    :appLayoutComponent="appLayoutComponent"
+    :navigationComponent="navigationComponent"
+    :renderLoader="renderLoader"
   ></fsxa-page>
 </template>
 
 <script>
 import { FSXAPage } from "fsxa-pattern-library";
+
+let AppLayoutComponent, LoaderComponent, NavigationComponent;
+<% if (options.appLayoutComponent) {%>AppLayoutComponent = require("<%= options.appLayoutComponent %>").default;<% } %>
+<% if (options.navigationComponent) {%>NavigationComponent = require("<%= options.navigationComponent %>").default;<% } %>
+<% if (options.loaderComponent) {%>LoaderComponent = require("<%= options.loaderComponent %>").default;<% } %>
 
 const removeExtension = (str) => str.split(".").slice(0, -1).join(".");
 const toSnakeCase = (str) =>
@@ -76,6 +84,15 @@ export default {
     sections() {
       return sections;
     },
+    appLayoutComponent() {
+      return AppLayoutComponent || undefined;
+    },
+    navigationComponent() {
+      return NavigationComponent || undefined;
+    },
+    renderLoader() {
+      return LoaderComponent ? () => <LoaderComponent /> : undefined;
+    }
   },
   methods: {
     handleRouteChange(route) {
