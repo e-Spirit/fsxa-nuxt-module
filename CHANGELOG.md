@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.1...v1.0.2) (2020-08-25)
+
+
+### Bug Fixes
+
+* **express-api:** remove import statements from server-middleware ([73a15a1](https://github.com/e-Spirit/fsxa-nuxt-module/commit/73a15a148709dcdb06a5079b8918808ce6215bee))
+
 ## [1.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.0...v1.0.1) (2020-08-25)
 
 
