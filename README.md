@@ -62,6 +62,9 @@ export default {
 | -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | sections | '~/components/sections' | The folder where all your section-components are located at. You can define an index-file which will directly map keys to section-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit. |
 | layouts  | '~/components/layouts'  | The folder where all your layout-components are located at. You can define an index-file which will directly map keys to layout-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.   |
+| appLayoutComponent | undefined | You can provide a component that will override the layout of the application. If you are using TypeScript you should make sure, that you extend the `FSXABaseAppLayout` that is provided by the `fsxa-pattern-library` |
+| navigationComponent | undefined | You can provide a component that will override the navigation. If you are using TypeScript you should make sure, that you extend the `FSXABaseNavigation` that is provided by the `fsxa-pattern-library` |
+| loaderComponent | undefined | You can provide a component that will override the default loading animation. |
 | devMode  | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                               |
 
 ### Starting Nuxt
