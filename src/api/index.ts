@@ -51,4 +51,4 @@ fsxaRoutes.get("/gca-pages/:uid?", async (req, res) => {
 });
 
 app.use("/fsxa", fsxaRoutes);
-export default app;
+module.exports = app;
