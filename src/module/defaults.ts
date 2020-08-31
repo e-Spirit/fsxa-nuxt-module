@@ -1,11 +1,12 @@
 import { FSXAModuleOptions } from ".";
+import path from "path";
 
 const defaults: FSXAModuleOptions = {
   // add options in here
   // allow disabling of specific routes and so on
   includeFSXAUI: true,
-  sections: "~/components/sections",
-  layouts: "~/components/layouts",
+  sections: path.join("~", "components", "sections"),
+  layouts: path.join("~", "components", "layouts"),
   devMode: false,
 };
 export default defaults;
