@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.3...v1.0.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **windows compat:** we are now using path.join for path construction ([b034446](https://github.com/e-Spirit/fsxa-nuxt-module/commit/b034446d7f055ac52d2485707daddbfa18811396))
+
 ## [1.0.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.2...v1.0.3) (2020-08-25)
 
 
