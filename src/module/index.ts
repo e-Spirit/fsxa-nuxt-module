@@ -58,7 +58,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     this.nuxt.hook("build:before", () => {
       // Use bootstrap-vue source code for smaller prod builds
       // by aliasing 'bootstrap-vue' to the source files
-      this.options.css.unshift(require.resolve("fsxa-ui/dist/fsxa-ui.css"));
+      this.options.css.unshift(
+        require.resolve(join("fsxa-ui", "dist", "fsxa-ui.css")),
+      );
       this.extendBuild((config) => {
         if (!config.resolve.alias) {
           config.resolve.alias = {};
@@ -66,7 +68,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         // We prepend a $ to ensure that it is only used for
         // `import from 'fsxa-ui'` not `import from 'fsxa-ui/*'`
         config.resolve.alias["fsxa-ui$"] = require.resolve("fsxa-ui");
-        this.options.build.transpile.push("fsxa-ui/src");
+        this.options.build.transpile.push(join("fsxa-ui", "src"));
       });
     });
   }
@@ -83,8 +85,8 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
 
   // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
-    src: resolve(__dirname, "../../templates/IndexPage.vue"),
-    fileName: join("fsxa/IndexPage.vue"),
+    src: resolve(__dirname, join("..", "..", "templates", "IndexPage.vue")),
+    fileName: join("fsxa", "IndexPage.vue"),
     options: {
       layoutsPath,
       sectionsPath,
@@ -114,7 +116,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
 
   // Add plugin
   const compiledPlugin = this.addTemplate({
-    src: resolve(__dirname, "../../templates/plugin.js"),
+    src: resolve(__dirname, join("..", "..", "templates", "plugin.js")),
     fileName: join("fsxa.js"),
     options: {},
   });
