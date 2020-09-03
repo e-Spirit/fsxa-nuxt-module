@@ -1,6 +1,7 @@
 # FSXA-Nuxt-Module
 
-This module is integrating the fsxa-pattern-library. Have a look at the documentation as well.
+This module is integrating the fsxa-pattern-library. 
+Have a look at the documentation as well.
 
 ## Getting Started
 
@@ -72,3 +73,19 @@ export default {
 ```bash
 npm run dev
 ```
+
+## Legal Notices
+FSXA-Nuxt-Module is a product of e-Spirit AG, Dortmund, Germany.
+The FSXA-Nuxt-Module is subject to the Apache-2.0 license.
+
+## Disclaimer
+This document is provided for information purposes only.
+e-Spirit may change the contents hereof without notice. 
+This document is not warranted to be error-free, nor subject to any 
+other warranties or conditions, whether expressed orally or 
+implied in law, including implied warranties and conditions of 
+merchantability or fitness for a particular purpose. e-Spirit 
+specifically disclaims any liability with respect to this document 
+and no contractual obligations are formed either directly or 
+indirectly by this document. The technologies, functionality, services, 
+and processes described herein are subject to change without notice.
