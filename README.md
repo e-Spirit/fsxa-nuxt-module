@@ -1,7 +1,12 @@
 # FSXA-Nuxt-Module
+This module is integrating the [FSXA-Pattern-Library](https://github.com/e-Spirit/fsxa-pattern-library).
 
-This module is integrating the fsxa-pattern-library. 
-Have a look at the documentation as well.
+### About the FSXA
+The FirstSpirit Experience Accelerator (FSXA) is the hybrid solution of a digital 
+experience platform, combining a headless approach with enterprise capabilities. 
+If you are interested in the FSXA check this 
+[Overview](https://docs.e-spirit.com/module/fsxa/overview/benefits-hybrid/index.html). You can order 
+a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
 ## Getting Started
 
@@ -17,7 +22,7 @@ yarn add fsxa-nuxt-module
 
 ### Initialize Store
 
-In order for the FSXA module of the FSXA pattern library to be registered with the Vuex store, it is necessary that Nuxt initializes Vuex already.
+In order for the FSXA module of the FSXA-Pattern-Library to be registered with the Vuex store, it is necessary that Nuxt initializes Vuex already.
 So if you don't have a `store/index.(js/ts)` file yet, create it.
 
 In addition, it is necessary that in the nuxtServerInit action of the Vuex store, the FSXA module of the FSXA pattern library is populated with the data from the SSR context.
@@ -75,7 +80,7 @@ npm run dev
 ```
 
 ## Legal Notices
-FSXA-Nuxt-Module is a product of e-Spirit AG, Dortmund, Germany.
+FSXA-Nuxt-Module is a product of [e-Spirit AG](http://www.e-spirit.com), Dortmund, Germany.
 The FSXA-Nuxt-Module is subject to the Apache-2.0 license.
 
 ## Disclaimer
