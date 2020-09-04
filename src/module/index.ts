@@ -3,15 +3,20 @@ import { join, resolve } from "path";
 import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
+import defaultApiMiddleware, {
+  createMiddleware,
+  MiddlewareOptions,
+} from "../api";
 
 export interface FSXAModuleOptions {
-  includeFSXAUI: boolean;
-  sections: string;
-  layouts: string;
+  includeFSXAUI?: boolean;
+  sections?: string;
+  layouts?: string;
   appLayoutComponent?: string;
   navigationComponent?: string;
   loaderComponent?: string;
-  devMode: boolean;
+  devMode?: boolean;
+  middleware?: MiddlewareOptions;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -79,17 +84,21 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   this.options.alias["~fsxa"] = srcDir;
   this.options.build.transpile.push(srcDir);
 
-  // build layouts
-  const layoutsPath = this.nuxt.resolver.resolveAlias(options.layouts);
-  const sectionsPath = this.nuxt.resolver.resolveAlias(options.sections);
+  // get absolute paths
+  const layoutsFolderExists = fs.existsSync(
+    this.nuxt.resolver.resolveAlias(options.layouts),
+  );
+  const sectionsFolderExists = fs.existsSync(
+    this.nuxt.resolver.resolveAlias(options.sections),
+  );
 
   // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "IndexPage.vue")),
     fileName: join("fsxa", "IndexPage.vue"),
     options: {
-      layoutsPath,
-      sectionsPath,
+      layoutsPath: layoutsFolderExists ? options.layouts : undefined,
+      sectionsPath: sectionsFolderExists ? options.sections : undefined,
       appLayoutComponent: options.appLayoutComponent,
       navigationComponent: options.navigationComponent,
       loaderComponent: options.loaderComponent,
@@ -111,7 +120,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // create serverMiddleware
   this.addServerMiddleware({
     path: "/api",
-    handler: join(srcDir, "api", "index"),
+    handler: options.middleware
+      ? createMiddleware(options.middleware)
+      : defaultApiMiddleware,
   });
 
   // Add plugin
