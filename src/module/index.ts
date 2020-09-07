@@ -9,6 +9,7 @@ import defaultApiMiddleware, {
 } from "../api";
 
 export interface FSXAModuleOptions {
+  appUrl: string;
   includeFSXAUI?: boolean;
   sections?: string;
   layouts?: string;
@@ -125,11 +126,19 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       : defaultApiMiddleware,
   });
 
+  if (!options.appUrl) {
+    throw new Error(
+      "You have to specify appUrl in your fsxa.config.ts. This is the url your app will be deployed at.",
+    );
+  }
+
   // Add plugin
   const compiledPlugin = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "plugin.js")),
     fileName: join("fsxa.js"),
-    options: {},
+    options: {
+      appUrl: options.appUrl,
+    },
   });
   this.options.plugins.push(resolve(this.options.buildDir, compiledPlugin.dst));
 };
