@@ -6,7 +6,7 @@ export default function (ctx, inject) {
     baseUrl:
       typeof window !== "undefined"
         ? "/api/fsxa"
-        : `http://localhost:${process.env.NUXT_HOST || 3000}/api/fsxa`,
+        : `http://localhost:3000/api/fsxa`,
   });
   if (typeof ctx.store === "undefined") {
     throw new Error(
