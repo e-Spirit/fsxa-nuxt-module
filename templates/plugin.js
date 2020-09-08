@@ -3,7 +3,11 @@ import { getFSXAModule } from "fsxa-pattern-library";
 export default function (ctx, inject) {
   const fsxaModule = getFSXAModule(process.env.FSXA_MODE, {
     mode: "proxy",
-    baseUrl: process.client ? "/api/fsxa" : "http://localhost:3000/api/fsxa",
+    baseUrl: process.client
+      ? "/api/fsxa"
+      : `${process.env.NUXT_HOST || "localhost"}:${
+          process.env.NUXT_PORT || 3000
+        }/api/fsxa`,
   });
   if (typeof ctx.store === "undefined") {
     throw new Error(
