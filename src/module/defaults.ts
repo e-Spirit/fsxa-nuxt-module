@@ -1,7 +1,7 @@
 import { FSXAModuleOptions } from ".";
 import path from "path";
 
-const defaults: FSXAModuleOptions = {
+const defaults: Partial<FSXAModuleOptions> = {
   // add options in here
   // allow disabling of specific routes and so on
   includeFSXAUI: true,

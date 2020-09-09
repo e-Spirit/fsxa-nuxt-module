@@ -37,7 +37,7 @@ const getComponentMap = (files) => {
     const file = removeExtension(fileName);
     return {
       ...result,
-      [toSnakeCase(file)]: files(fileName).default,
+      [toSnakeCase(file).replace(/_index$/g, "")]: files(fileName).default,
     };
   }, {});
 };

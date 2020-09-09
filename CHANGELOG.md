@@ -1,3 +1,71 @@
+## [1.2.7](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.6...v1.2.7) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** introduce new fsxa-pattern-library and update nuxt-plugin to meet SSR requirements ([5f2f4a0](https://github.com/e-Spirit/fsxa-nuxt-module/commit/5f2f4a0e7073a5e35e9584db2ebac705623e1f01))
+
+## [1.2.6](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.5...v1.2.6) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** set appUrl for client mode ([ca32188](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ca3218881c387d2d0badafc8413e91e39a29cc8a))
+
+## [1.2.5](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.4...v1.2.5) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** fix wrong usage of NUXT_HOST env variable ([344369e](https://github.com/e-Spirit/fsxa-nuxt-module/commit/344369edb4a608cc52e5d4fc6d7bfb1af4c56d8a))
+
+## [1.2.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.3...v1.2.4) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** update client-check ([8d0692f](https://github.com/e-Spirit/fsxa-nuxt-module/commit/8d0692f870c8cee0dd3c584a7c048a13ca4a9471))
+
+## [1.2.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.2...v1.2.3) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** check if window exists to ensure that the correct baseUrl is passed to the API ([ea140cc](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ea140cc35701394ee2ec77c37f89894ab30b8287))
+
+## [1.2.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.1...v1.2.2) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** switch to usage of NUXT_HOST and NUXT_PORT environment variables during build ([496047f](https://github.com/e-Spirit/fsxa-nuxt-module/commit/496047f601f2911cf4a9cfac1ea568841521d944))
+
+## [1.2.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.0...v1.2.1) (2020-09-08)
+
+
+### Bug Fixes
+
+* **plugin:** remove appUrl usage from plugin and add internal routing to localhost:3000 when in SSR ([0d6e7c8](https://github.com/e-Spirit/fsxa-nuxt-module/commit/0d6e7c8d605fd7c9be7c924565ed9b76b13302ce))
+
+# [1.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.1.0...v1.2.0) (2020-09-07)
+
+
+### Features
+
+* **configuration:** we introduced a new required configuration option named *appUrl* ([3a272ec](https://github.com/e-Spirit/fsxa-nuxt-module/commit/3a272ecd1365d3c2095fc583a5c27cce93f326c6))
+
+# [1.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.4...v1.1.0) (2020-09-04)
+
+
+### Bug Fixes
+
+* **mapping:** subfolders are now correctly mapped to component-keys ([c77b0da](https://github.com/e-Spirit/fsxa-nuxt-module/commit/c77b0da26e5ef2a61b3ae8be868036a97abf4887))
+
+
+### Features
+
+* **api:** you can now add custom routes to the backend api ([ae8a8a2](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ae8a8a2ce5741dbd5a8e3ba942cfc565a58e5014))
+
 ## [1.0.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.0.3...v1.0.4) (2020-08-31)
 
 
