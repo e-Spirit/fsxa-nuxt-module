@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.7...v1.3.0) (2020-09-09)
+
+
+### Features
+
+* **fsxa-api:** update to fsxa-api v1.1.0 to support new tenantId feature ([2a081df](https://github.com/e-Spirit/fsxa-nuxt-module/commit/2a081df89dd99fe9d3f2b0e40f53c340b318e6e6))
+
 ## [1.2.7](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.6...v1.2.7) (2020-09-08)
 
 
