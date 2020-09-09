@@ -1,4 +1,4 @@
-# FSDevTools - Contribution guide lines
+# FSXA-Nuxt-Module - Contribution guide lines
 
 ## Contributing
 
