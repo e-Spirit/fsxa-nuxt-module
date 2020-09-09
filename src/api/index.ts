@@ -12,6 +12,7 @@ const fsxaAPI = new FSXAApi(
       caas: process.env.FSXA_CAAS,
       projectId: process.env.FSXA_PROJECT_ID,
       navigationService: process.env.FSXA_NAVIGATION_SERVICE,
+      tenantId: process.env.FSXA_TENANT_ID,
     },
   },
 );
