@@ -58,12 +58,14 @@ export const createMiddleware = (
       res.json(response);
     });
     fsxaRoutes.get("/navigation", async (req, res) => {
-      if (!req.query.language)
+      const { defaultLocale, initialPath } = req.query;
+      if (!defaultLocale)
         return res.json({
-          error: "Please specify a language through ?language=",
+          error: "Please specify a fallback locale through ?defaultLocale=",
         });
       const response = await fsxaAPI.fetchNavigation(
-        req.query.language as string,
+        initialPath === "null" || !initialPath ? null : (initialPath as string),
+        defaultLocale as string,
       );
       res.json(response);
     });
