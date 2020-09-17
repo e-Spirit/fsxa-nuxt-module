@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.3.0...v1.4.0) (2020-09-17)
+
+
+### Features
+
+* **i18n:** we are now supporting multi-language projects as well ([a4fe89f](https://github.com/e-Spirit/fsxa-nuxt-module/commit/a4fe89ff7e4e1679fd50317bac9aa5f4fb165f3e))
+
 # [1.3.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.2.7...v1.3.0) (2020-09-09)
 
 
