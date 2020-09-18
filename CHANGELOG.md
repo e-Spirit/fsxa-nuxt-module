@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.0...v1.4.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **configuration:** remove obsolete appUrl setting ([1a2368a](https://github.com/e-Spirit/fsxa-nuxt-module/commit/1a2368a90915abcf684815dce2210486b4e88316))
+
 # [1.4.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.3.0...v1.4.0) (2020-09-17)
 
 
