@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.1...v1.4.2) (2020-09-24)
+
+
+### Bug Fixes
+
+* **automatic file mapping:** nuxt was not able to watch newly created directories for components ([87dcf9a](https://github.com/e-Spirit/fsxa-nuxt-module/commit/87dcf9a4760a8e1116670a59598af4489e6eb576))
+
 ## [1.4.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.0...v1.4.1) (2020-09-18)
 
 
