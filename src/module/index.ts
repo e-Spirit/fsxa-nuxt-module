@@ -92,6 +92,15 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     this.nuxt.resolver.resolveAlias(options.sections),
   );
 
+  if (this.nuxt.options.dev) {
+    this.nuxt.options.watch.push(
+      this.nuxt.resolver.resolveAlias(options.sections),
+    );
+    this.nuxt.options.watch.push(
+      this.nuxt.resolver.resolveAlias(options.layouts),
+    );
+  }
+
   // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "IndexPage.vue")),
