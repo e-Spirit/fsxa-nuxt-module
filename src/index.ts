@@ -1,6 +1,15 @@
 import { FSXAModuleOptions as _FSXAModuleOptions } from "./module";
-export type FSXACustomRoute = import("./api/index").CustomRoute;
-export type FSXAMiddlewareOptions = import("./api/index").MiddlewareOptions;
-export type FSXAMiddlewareContext = import("./api/index").MiddlewareContext;
+
+import {
+  CustomRoute,
+  CustomRouteHandler,
+  MiddlewareOptions,
+  MiddlewareContext,
+} from "./api";
+
+export type FSXACustomRoute = CustomRoute;
+export type FSXACustomRouteHandler = CustomRouteHandler;
+export type FSXAMiddlewareOptions = MiddlewareOptions;
+export type FSXAMiddlewareContext = MiddlewareContext;
 
 export type FSXAModuleOptions = _FSXAModuleOptions;

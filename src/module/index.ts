@@ -3,10 +3,7 @@ import { join, resolve } from "path";
 import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
-import defaultApiMiddleware, {
-  createMiddleware,
-  MiddlewareOptions,
-} from "../api";
+import defaultApiMiddleware, { createMiddleware, CustomRoute } from "../api";
 
 export interface FSXAModuleOptions {
   includeFSXAUI?: boolean;
@@ -16,7 +13,7 @@ export interface FSXAModuleOptions {
   navigationComponent?: string;
   loaderComponent?: string;
   devMode?: boolean;
-  middleware?: MiddlewareOptions;
+  customRoutes?: string;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -126,11 +123,30 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   };
 
+  const customRoutes: CustomRoute[] = [];
+  if (options.customRoutes) {
+    const customRoutesPath = this.nuxt.resolver.resolveAlias(
+      options.customRoutes,
+    );
+    this.options.build.transpile.push(customRoutesPath);
+    // get files in folder
+    const files = fs.readdirSync(customRoutesPath);
+    files.forEach((file) => {
+      // eslint-disable-next-line
+      const customRoute = require(`${customRoutesPath}/${file}`);
+      customRoutes.push({
+        handler: customRoute.default.handler,
+        route: customRoute.default.route,
+      });
+    });
+  }
   // create serverMiddleware
   this.addServerMiddleware({
     path: "/api",
-    handler: options.middleware
-      ? createMiddleware(options.middleware)
+    handler: customRoutes
+      ? createMiddleware({
+          customRoutes,
+        })
       : defaultApiMiddleware,
   });
 

@@ -33,11 +33,8 @@ export interface CustomRoute {
 }
 export interface MiddlewareOptions {
   customRoutes?: CustomRoute[];
-  disabledRoutes?: string[];
 }
-const defaultOptions: MiddlewareOptions = {
-  disabledRoutes: [],
-};
+const defaultOptions: MiddlewareOptions = {};
 
 export const createMiddleware = (
   options: MiddlewareOptions,
