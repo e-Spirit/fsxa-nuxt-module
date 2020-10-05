@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.2...v2.0.0) (2020-10-05)
+
+
+### Bug Fixes
+
+* **options:** fix custom route format ([d53db84](https://github.com/e-Spirit/fsxa-nuxt-module/commit/d53db84fb0323f238f2acea877bd26676b96b089))
+
+
+### BREAKING CHANGES
+
+* **options:** You can no longer pass middlewarOptions. Use the customRoutes option instead.
+
 ## [1.4.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.1...v1.4.2) (2020-09-24)
 
 
