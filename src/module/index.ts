@@ -3,7 +3,13 @@ import { join, resolve } from "path";
 import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
-import defaultApiMiddleware, { createMiddleware, CustomRoute } from "../api";
+import createMiddleware, { CustomRoute } from "../api";
+import {
+  FSXAApi,
+  FSXAContentMode,
+  QueryBuilderQuery,
+  RegisteredDatasetQuery,
+} from "fsxa-api";
 
 export interface FSXAModuleOptions {
   includeFSXAUI?: boolean;
@@ -14,6 +20,7 @@ export interface FSXAModuleOptions {
   loaderComponent?: string;
   devMode?: boolean;
   customRoutes?: string;
+  mapDataQuery: (query: RegisteredDatasetQuery) => QueryBuilderQuery[];
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -140,14 +147,27 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       });
     });
   }
+
+  const fsxaAPI = new FSXAApi(process.env.FSXA_MODE as FSXAContentMode, {
+    mode: "remote",
+    config: {
+      apiKey: process.env.FSXA_API_KEY,
+      caas: process.env.FSXA_CAAS,
+      projectId: process.env.FSXA_PROJECT_ID,
+      navigationService: process.env.FSXA_NAVIGATION_SERVICE,
+      tenantId: process.env.FSXA_TENANT_ID,
+      mapDataQuery: options.mapDataQuery,
+    },
+  });
   // create serverMiddleware
   this.addServerMiddleware({
     path: "/api",
-    handler: customRoutes
-      ? createMiddleware({
-          customRoutes,
-        })
-      : defaultApiMiddleware,
+    handler: createMiddleware(
+      {
+        customRoutes,
+      },
+      fsxaAPI,
+    ),
   });
 
   // Add plugin

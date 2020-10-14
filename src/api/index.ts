@@ -1,30 +1,17 @@
-import express, { Express, Request, Response } from "express";
-import FSXAApi from "fsxa-api";
+import express, { Express, Request, Response, NextFunction } from "express";
+import { FSXAApi } from "fsxa-api";
+import getExpressRouter from "fsxa-api/dist/lib/integrations/express";
 import { ServerMiddleware } from "@nuxt/types";
 require("cross-fetch/polyfill");
-
-const fsxaAPI = new FSXAApi(
-  process.env.FSXA_MODE as import("fsxa-api").FSXAContentMode,
-  {
-    mode: "remote",
-    config: {
-      apiKey: process.env.FSXA_API_KEY,
-      caas: process.env.FSXA_CAAS,
-      projectId: process.env.FSXA_PROJECT_ID,
-      navigationService: process.env.FSXA_NAVIGATION_SERVICE,
-      tenantId: process.env.FSXA_TENANT_ID,
-    },
-  },
-);
 
 export interface MiddlewareContext {
   fsxaAPI: FSXAApi;
 }
 export type CustomRouteHandler = (
   context: MiddlewareContext,
-  req: import("express").Request,
-  res: import("express").Response,
-  next: import("express").NextFunction,
+  req: Request,
+  res: Response,
+  next: NextFunction,
 ) => void;
 
 export interface CustomRoute {
@@ -34,15 +21,14 @@ export interface CustomRoute {
 export interface MiddlewareOptions {
   customRoutes?: CustomRoute[];
 }
-const defaultOptions: MiddlewareOptions = {};
-
-export const createMiddleware = (
+const createMiddleware = (
   options: MiddlewareOptions,
+  api: FSXAApi,
 ): ServerMiddleware => {
   const middleware: ServerMiddleware = (req, res, next): Express => {
     const app = express();
     app.set("trust proxy", true);
-    const fsxaRoutes = express.Router();
+    /**const fsxaRoutes = express.Router();
     fsxaRoutes.get("/pages/:pageId", async (req, res) => {
       if (!req.query.language)
         return res.json({
@@ -88,17 +74,17 @@ export const createMiddleware = (
       return res.json({
         error: "Could not find given Route.",
       });
-    });
-    app.use("/fsxa", fsxaRoutes);
+    });**/
+    app.use("/fsxa", getExpressRouter({ api }));
     (options.customRoutes || []).forEach((customRoute) => {
       app.use(customRoute.route, (req, res, next) => {
-        customRoute.handler({ fsxaAPI }, req, res, next);
+        customRoute.handler({ fsxaAPI: api }, req, res, next);
       });
     });
     return app(req as Request, res as Response, next);
   };
   return middleware;
 };
-export default createMiddleware(defaultOptions);
+export default createMiddleware;
 // eslint-disable-next-line
 export const meta = require("./../../package.json");

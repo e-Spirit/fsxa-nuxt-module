@@ -1,11 +1,13 @@
 # FSXA-Nuxt-Module
+
 This module is integrating the [FSXA-Pattern-Library](https://github.com/e-Spirit/fsxa-pattern-library).
 
 ### About the FSXA
-The FirstSpirit Experience Accelerator (FSXA) is the hybrid solution of a digital 
-experience platform, combining a headless approach with enterprise capabilities. 
-If you are interested in the FSXA check this 
-[Overview](https://docs.e-spirit.com/module/fsxa/overview/benefits-hybrid/index.html). You can order 
+
+The FirstSpirit Experience Accelerator (FSXA) is the hybrid solution of a digital
+experience platform, combining a headless approach with enterprise capabilities.
+If you are interested in the FSXA check this
+[Overview](https://docs.e-spirit.com/module/fsxa/overview/benefits-hybrid/index.html). You can order
 a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
 ## Getting Started
@@ -64,14 +66,15 @@ export default {
 
 #### Options
 
-| Key      | Default                 | Description                                                                                                                                                                                                                                                                    |
-| -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| sections | '~/components/sections' | The folder where all your section-components are located at. You can define an index-file which will directly map keys to section-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit. |
-| layouts  | '~/components/layouts'  | The folder where all your layout-components are located at. You can define an index-file which will directly map keys to layout-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.   |
-| appLayoutComponent | undefined | You can provide a component that will override the layout of the application. If you are using TypeScript you should make sure, that you extend the `FSXABaseAppLayout` that is provided by the `fsxa-pattern-library` |
-| navigationComponent | undefined | You can provide a component that will override the navigation. If you are using TypeScript you should make sure, that you extend the `FSXABaseNavigation` that is provided by the `fsxa-pattern-library` |
-| loaderComponent | undefined | You can provide a component that will override the default loading animation. |
-| devMode  | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                               |
+| Key                 | Default                 | Description                                                                                                                                                                                                                                                                    |
+| ------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| sections            | '~/components/sections' | The folder where all your section-components are located at. You can define an index-file which will directly map keys to section-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit. |
+| layouts             | '~/components/layouts'  | The folder where all your layout-components are located at. You can define an index-file which will directly map keys to layout-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.   |
+| appLayoutComponent  | undefined               |  You can provide a component that will override the layout of the application. If you are using TypeScript you should make sure, that you extend the `FSXABaseAppLayout` that is provided by the `fsxa-pattern-library`                                                        |
+| navigationComponent | undefined               |  You can provide a component that will override the navigation. If you are using TypeScript you should make sure, that you extend the `FSXABaseNavigation` that is provided by the `fsxa-pattern-library`                                                                      |
+| loaderComponent     | undefined               |  You can provide a component that will override the default loading animation.                                                                                                                                                                                                 |
+| devMode             | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                               |
+| customRoutes        | undefined               |  You can provide a path, where your custom routes are defined.                                                                                                                                                                                                                 |
 
 ### Starting Nuxt
 
@@ -80,17 +83,19 @@ npm run dev
 ```
 
 ## Legal Notices
+
 FSXA-Nuxt-Module is a product of [e-Spirit AG](http://www.e-spirit.com), Dortmund, Germany.
 The FSXA-Nuxt-Module is subject to the Apache-2.0 license.
 
 ## Disclaimer
+
 This document is provided for information purposes only.
-e-Spirit may change the contents hereof without notice. 
-This document is not warranted to be error-free, nor subject to any 
-other warranties or conditions, whether expressed orally or 
-implied in law, including implied warranties and conditions of 
-merchantability or fitness for a particular purpose. e-Spirit 
-specifically disclaims any liability with respect to this document 
-and no contractual obligations are formed either directly or 
-indirectly by this document. The technologies, functionality, services, 
+e-Spirit may change the contents hereof without notice.
+This document is not warranted to be error-free, nor subject to any
+other warranties or conditions, whether expressed orally or
+implied in law, including implied warranties and conditions of
+merchantability or fitness for a particular purpose. e-Spirit
+specifically disclaims any liability with respect to this document
+and no contractual obligations are formed either directly or
+indirectly by this document. The technologies, functionality, services,
 and processes described herein are subject to change without notice.
