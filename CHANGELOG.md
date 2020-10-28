@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.0.0...v2.1.0) (2020-10-14)
+
+
+### Features
+
+* **datasets:** add datasets support and switch internally to getExpressRouter exposed by fsxaapi ([a5d1fb1](https://github.com/e-Spirit/fsxa-nuxt-module/commit/a5d1fb10c0b0597f8fc09019bb4128b94226deff))
+
 # [2.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v1.4.2...v2.0.0) (2020-10-05)
 
 
