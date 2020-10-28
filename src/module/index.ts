@@ -9,12 +9,14 @@ import {
   FSXAContentMode,
   QueryBuilderQuery,
   RegisteredDatasetQuery,
+  LogLevel,
 } from "fsxa-api";
 
 export interface FSXAModuleOptions {
   includeFSXAUI?: boolean;
   sections?: string;
   layouts?: string;
+  logLevel?: LogLevel;
   appLayoutComponent?: string;
   navigationComponent?: string;
   loaderComponent?: string;
@@ -82,36 +84,26 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   }
 
+  this.nuxt.hook("build:before", () => {
+    this.extendBuild((config) => {
+      config.resolve.alias["fsxa-api$"] = require.resolve("fsxa-api");
+      this.options.build.transpile.push(join("fsxa-api", "src"));
+    });
+  });
+
   this.options.build.transpile.push(/^fsxa-pattern-library/);
 
   // Transpile and alias fsxa src
   this.options.alias["~fsxa"] = srcDir;
   this.options.build.transpile.push(srcDir);
 
-  // get absolute paths
-  const layoutsFolderExists = fs.existsSync(
-    this.nuxt.resolver.resolveAlias(options.layouts),
-  );
-  const sectionsFolderExists = fs.existsSync(
-    this.nuxt.resolver.resolveAlias(options.sections),
-  );
-
-  if (this.nuxt.options.dev) {
-    this.nuxt.options.watch.push(
-      this.nuxt.resolver.resolveAlias(options.sections),
-    );
-    this.nuxt.options.watch.push(
-      this.nuxt.resolver.resolveAlias(options.layouts),
-    );
-  }
-
   // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "IndexPage.vue")),
     fileName: join("fsxa", "IndexPage.vue"),
     options: {
-      layoutsPath: layoutsFolderExists ? options.layouts : undefined,
-      sectionsPath: sectionsFolderExists ? options.sections : undefined,
+      layoutsPath: options.layouts,
+      sectionsPath: options.sections,
       appLayoutComponent: options.appLayoutComponent,
       navigationComponent: options.navigationComponent,
       loaderComponent: options.loaderComponent,
@@ -148,17 +140,21 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   }
 
-  const fsxaAPI = new FSXAApi(process.env.FSXA_MODE as FSXAContentMode, {
-    mode: "remote",
-    config: {
-      apiKey: process.env.FSXA_API_KEY,
-      caas: process.env.FSXA_CAAS,
-      projectId: process.env.FSXA_PROJECT_ID,
-      navigationService: process.env.FSXA_NAVIGATION_SERVICE,
-      tenantId: process.env.FSXA_TENANT_ID,
-      mapDataQuery: options.mapDataQuery,
+  const fsxaAPI = new FSXAApi(
+    process.env.FSXA_MODE as FSXAContentMode,
+    {
+      mode: "remote",
+      config: {
+        apiKey: process.env.FSXA_API_KEY,
+        caas: process.env.FSXA_CAAS,
+        projectId: process.env.FSXA_PROJECT_ID,
+        navigationService: process.env.FSXA_NAVIGATION_SERVICE,
+        tenantId: process.env.FSXA_TENANT_ID,
+        mapDataQuery: options.mapDataQuery,
+      },
     },
-  });
+    options.logLevel,
+  );
   // create serverMiddleware
   this.addServerMiddleware({
     path: "/api",
@@ -174,7 +170,12 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   const compiledPlugin = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "plugin.js")),
     fileName: join("fsxa.js"),
-    options: {},
+    options: {
+      logLevel:
+        typeof options.logLevel !== "undefined"
+          ? options.logLevel
+          : "undefined",
+    },
   });
   this.options.plugins.push(resolve(this.options.buildDir, compiledPlugin.dst));
 };

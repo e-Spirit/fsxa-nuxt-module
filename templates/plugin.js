@@ -9,6 +9,7 @@ export default function (ctx, inject) {
         process.env.NUXT_PORT || 3000
       }/api/fsxa`,
     },
+    logLevel: "<%= options.logLevel %>",
   });
   if (typeof ctx.store === "undefined") {
     throw new Error(
