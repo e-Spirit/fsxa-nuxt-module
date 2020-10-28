@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.1.0...v2.2.0) (2020-10-28)
+
+
+### Features
+
+* **logging:** you can now specify a logLevel through your config file ([0cdcc39](https://github.com/e-Spirit/fsxa-nuxt-module/commit/0cdcc39b420936cfb91c270126a693449af64101))
+
 # [2.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.0.0...v2.1.0) (2020-10-14)
 
 
