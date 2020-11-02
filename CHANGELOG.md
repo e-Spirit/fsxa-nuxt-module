@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.2.0...v2.2.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* **dependencies:** add loose coupling for dependency versions ([d63e782](https://github.com/e-Spirit/fsxa-nuxt-module/commit/d63e78242e012a108c742606732c6ca9a47d05b4))
+
 # [2.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.1.0...v2.2.0) (2020-10-28)
 
 
