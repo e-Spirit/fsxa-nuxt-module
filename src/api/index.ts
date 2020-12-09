@@ -25,7 +25,7 @@ const createMiddleware = (
   options: MiddlewareOptions,
   api: FSXAApi,
 ): ServerMiddleware => {
-  const middleware: ServerMiddleware = (req, res, next): Express => {
+  const middleware: ServerMiddleware = (req, res, next) => {
     const app = express();
     app.set("trust proxy", true);
     app.use("/fsxa", getExpressRouter({ api }));
