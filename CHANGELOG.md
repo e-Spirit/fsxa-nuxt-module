@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.2.1...v3.0.0) (2020-12-09)
+
+
+### Features
+
+* **configuration / dataset support:** changed configuration of components and its file structure ([ae69a42](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ae69a4248dc29b9a23a177102716058e2c9f5b01))
+
+
+### BREAKING CHANGES
+
+* **configuration / dataset support:** - Components will now be passed as a single configuration option
+
 ## [2.2.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.2.0...v2.2.1) (2020-11-02)
 
 
