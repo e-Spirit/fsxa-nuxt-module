@@ -13,13 +13,16 @@ import {
 } from "fsxa-api";
 
 export interface FSXAModuleOptions {
-  includeFSXAUI?: boolean;
-  sections?: string;
-  layouts?: string;
+  components?: {
+    sections?: string;
+    layouts?: string;
+    appLayout?: string;
+    page404?: string;
+    loader?: string;
+  };
   logLevel?: LogLevel;
-  appLayoutComponent?: string;
-  navigationComponent?: string;
-  loaderComponent?: string;
+  globalSettingsKey?: string;
+  defaultLocale: string;
   devMode?: boolean;
   customRoutes?: string;
   mapDataQuery: (query: RegisteredDatasetQuery) => QueryBuilderQuery[];
@@ -55,43 +58,30 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   const srcDir = resolve(__dirname, "..");
 
   // this is the default configuration
-  if (
+  /**if (
     this.options.dir.store === "store" &&
     isDirEmptyOrNotExisting(join(this.options.srcDir, "store"))
   ) {
     // we are trying to extend the config
     this.options.dir.store = join(srcDir, "store");
-  }
-
-  // add fsxa-ui css if allowed
-  if (options.includeFSXAUI) {
-    //
-    this.nuxt.hook("build:before", () => {
-      // Use bootstrap-vue source code for smaller prod builds
-      // by aliasing 'bootstrap-vue' to the source files
-      this.options.css.unshift(
-        require.resolve(join("fsxa-ui", "dist", "fsxa-ui.css")),
-      );
-      this.extendBuild((config) => {
-        if (!config.resolve.alias) {
-          config.resolve.alias = {};
-        }
-        // We prepend a $ to ensure that it is only used for
-        // `import from 'fsxa-ui'` not `import from 'fsxa-ui/*'`
-        config.resolve.alias["fsxa-ui$"] = require.resolve("fsxa-ui");
-        this.options.build.transpile.push(join("fsxa-ui", "src"));
-      });
-    });
-  }
+  }**/
 
   this.nuxt.hook("build:before", () => {
+    this.options.css.unshift(
+      require.resolve(
+        join("fsxa-pattern-library", "dist", "fsxa-pattern-library.css"),
+      ),
+    );
     this.extendBuild((config) => {
       config.resolve.alias["fsxa-api$"] = require.resolve("fsxa-api");
       this.options.build.transpile.push(join("fsxa-api", "src"));
+      config.resolve.alias["fsxa-pattern-library$"] = require.resolve(
+        "fsxa-pattern-library",
+      );
+      this.options.build.transpile.push(join("fsxa-pattern-library", "src"));
+      this.options.build.transpile.push(join("fsxa-pattern-library"));
     });
   });
-
-  this.options.build.transpile.push(/^fsxa-pattern-library/);
 
   // Transpile and alias fsxa src
   this.options.alias["~fsxa"] = srcDir;
@@ -102,11 +92,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     src: resolve(__dirname, join("..", "..", "templates", "IndexPage.vue")),
     fileName: join("fsxa", "IndexPage.vue"),
     options: {
-      layoutsPath: options.layouts,
-      sectionsPath: options.sections,
-      appLayoutComponent: options.appLayoutComponent,
-      navigationComponent: options.navigationComponent,
-      loaderComponent: options.loaderComponent,
+      components: options.components || {},
+      defaultLocale: options.defaultLocale,
+      globalSettingsKey: options.globalSettingsKey,
     },
   });
 
@@ -127,6 +115,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     const customRoutesPath = this.nuxt.resolver.resolveAlias(
       options.customRoutes,
     );
+    if (this.nuxt.options.dev) {
+      this.nuxt.options.watch.push(customRoutesPath);
+    }
     this.options.build.transpile.push(customRoutesPath);
     // get files in folder
     const files = fs.readdirSync(customRoutesPath);

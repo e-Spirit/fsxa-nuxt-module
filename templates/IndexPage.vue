@@ -1,33 +1,35 @@
 <template>
-  <fsxa-page
-    :dev-mode="devMode"
-    :current-path="this.$router.currentRoute.path"
-    default-locale="de_DE"
-    :layouts="layouts"
-    :sections="sections"
-    :locales="locales"
-    :handle-route-change="handleRouteChange"
-    :appLayoutComponent="appLayoutComponent"
-    :navigationComponent="navigationComponent"
-    :renderLoader="renderLoader"
-  ></fsxa-page>
+  <fsxa-app
+    :devMode="devMode"
+    :currentPath="this.$router.currentRoute.path"
+    defaultLocale="<%= options.defaultLocale %>"
+    :globalSettingsKey="globalSettingsKey"
+    :components="components"
+    :handleRouteChange="handleRouteChange"
+  />
 </template>
 
 <script>
-import { FSXAPage } from "fsxa-pattern-library";
+import { FSXAApp } from "fsxa-pattern-library";
 
-let AppLayoutComponent, LoaderComponent, NavigationComponent;
-<% if (options.appLayoutComponent) {%>AppLayoutComponent = require("<%= options.appLayoutComponent %>").default;<% } %>
-<% if (options.navigationComponent) {%>NavigationComponent = require("<%= options.navigationComponent %>").default;<% } %>
-<% if (options.loaderComponent) {%>LoaderComponent = require("<%= options.loaderComponent %>").default;<% } %>
+let AppLayout, Loader, Page404;
+<% if (options.components.appLayout) {%>AppLayout = require("<%= options.components.appLayout %>").default;<% } %>
+<% if (options.components.loader) {%>Loader = require("<%= options.components.loader %>").default;<% } %>
+<% if (options.components.page404) {%>Page404 = require("<%= options.components.page404 %>").default;<% } %>
+
 
 const removeExtension = (str) => str.split(".").slice(0, -1).join(".");
-const toSnakeCase = (str) =>
-  str &&
+const transformFilePathToComponentName = (str) => {
+  const pathArray = str ? str.split("/") : [];
+  return pathArray.filter(path => path !== ".").map(path => toSnakeCase(path)).join(".");
+}
+const toSnakeCase = (str) => {
+  return str &&
   str
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]\/*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
     .map((x) => x.toLowerCase())
     .join("_");
+}
 
 const getComponentMap = (files) => {
   if (files.keys().includes("./index.ts")) return files("./index.ts").default;
@@ -37,61 +39,44 @@ const getComponentMap = (files) => {
     const file = removeExtension(fileName);
     return {
       ...result,
-      [toSnakeCase(file).replace(/_index$/g, "")]: files(fileName).default,
+      [transformFilePathToComponentName(file)]: files(fileName).default,
     };
   }, {});
 };
 
 const layouts = getComponentMap(
   require.context(
-    "<%= options.layoutsPath %>",
+    "<%= options.components.layouts %>",
     true,
     /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
   )
 );
 const sections = getComponentMap(
   require.context(
-    "<%= options.sectionsPath %>",
+    "<%= options.components.sections %>",
     true,
     /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
   )
 );
 
 export default {
-  name: "FSXAPatternLibrary",
+  name: "FSXAModule",
   components: {
-    "fsxa-page": FSXAPage,
+    "fsxa-app": FSXAApp,
   },
   props: ["devMode"],
-  data() {
-    return {
-      locales: [
-        {
-          label: "DE",
-          value: "de_DE",
-        },
-        {
-          label: "EN",
-          value: "en_GB",
-        },
-      ],
-    };
-  },
   computed: {
-    layouts() {
-      return layouts;
+    globalSettingsKey() {
+      return "<%= options.globalSettingsKey %>" || undefined;
     },
-    sections() {
-      return sections;
-    },
-    appLayoutComponent() {
-      return AppLayoutComponent || undefined;
-    },
-    navigationComponent() {
-      return NavigationComponent || undefined;
-    },
-    renderLoader() {
-      return LoaderComponent ? () => <LoaderComponent /> : undefined;
+    components() {
+      return {
+        appLayout: AppLayout || undefined,
+        loader: Loader || undefined,
+        page404: Page404 || undefined,
+        layouts,
+        sections,
+      }
     }
   },
   methods: {
