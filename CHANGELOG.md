@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.0.0...v3.1.0) (2020-12-14)
+
+
+### Features
+
+* **sitemap / fsxa-api:** we've updated the fsxa-api and added a sitemap route ([6abdda5](https://github.com/e-Spirit/fsxa-nuxt-module/commit/6abdda5dfca8c75410a50daba0bb16fe8af5e8ab))
+
 # [3.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v2.2.1...v3.0.0) (2020-12-09)
 
 
