@@ -1,5 +1,5 @@
-import express, { Express, Request, Response, NextFunction } from "express";
-import { FSXAApi } from "fsxa-api";
+import express, { Request, Response, NextFunction } from "express";
+import { FSXAApi, FSXAApiErrors, NavigationData } from "fsxa-api";
 import getExpressRouter from "fsxa-api/dist/lib/integrations/express";
 import { ServerMiddleware } from "@nuxt/types";
 require("cross-fetch/polyfill");
@@ -18,6 +18,43 @@ export interface CustomRoute {
   route: string;
   handler: CustomRouteHandler;
 }
+const generateSitemap = async (
+  fsxaAPI: FSXAApi,
+  req: Request,
+  res: Response,
+) => {
+  const host = [req.protocol, "://", req.headers.host].join("");
+  try {
+    const response: NavigationData | null = await fsxaAPI.fetchNavigation(
+      null,
+      req.params.language,
+    );
+    const locations = Object.keys(response.seoRouteMap);
+    res.set("Content-Type", "text/xml");
+    res.send(`<?xml version="1.0" encoding="UTF-8"?>
+  <urlset>
+    ${locations
+      .map(
+        (location) => `
+    <url><loc>${host}${location}</loc></url>
+`,
+      )
+      .join("\n")}
+  </urlset>`);
+  } catch (err) {
+    if (err.message === FSXAApiErrors.NOT_FOUND) {
+      res.status(404).json({
+        error: err.message,
+      });
+    }
+    if (err.message === FSXAApiErrors.UNKNOWN_ERROR) {
+      res.status(500).json({
+        error: err.message,
+      });
+    }
+  }
+};
+
 export interface MiddlewareOptions {
   customRoutes?: CustomRoute[];
 }
@@ -34,6 +71,7 @@ const createMiddleware = (
         customRoute.handler({ fsxaAPI: api }, req, res, next);
       });
     });
+    app.use("/sitemap/:language", (req, res) => generateSitemap(api, req, res));
     return app(req as Request, res as Response, next);
   };
   return middleware;

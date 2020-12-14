@@ -21,7 +21,7 @@ let AppLayout, Loader, Page404;
 const removeExtension = (str) => str.split(".").slice(0, -1).join(".");
 const transformFilePathToComponentName = (str) => {
   const pathArray = str ? str.split("/") : [];
-  return pathArray.filter(path => path !== ".").map(path => toSnakeCase(path)).join(".");
+  return pathArray.filter(path => path !== ".").map(path => toSnakeCase(path)).join(".").replace(/\.index$/gm, "");
 }
 const toSnakeCase = (str) => {
   return str &&
@@ -44,6 +44,13 @@ const getComponentMap = (files) => {
   }, {});
 };
 
+const richtext = getComponentMap(
+  require.context(
+    "<%= options.components.richtext %>",
+    true,
+    /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
+  )
+);
 const layouts = getComponentMap(
   require.context(
     "<%= options.components.layouts %>",
@@ -74,6 +81,7 @@ export default {
         appLayout: AppLayout || undefined,
         loader: Loader || undefined,
         page404: Page404 || undefined,
+        richtext,
         layouts,
         sections,
       }

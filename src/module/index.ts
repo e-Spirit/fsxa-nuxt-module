@@ -4,18 +4,13 @@ import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
-import {
-  FSXAApi,
-  FSXAContentMode,
-  QueryBuilderQuery,
-  RegisteredDatasetQuery,
-  LogLevel,
-} from "fsxa-api";
+import { FSXAApi, FSXAContentMode, LogLevel } from "fsxa-api";
 
 export interface FSXAModuleOptions {
   components?: {
     sections?: string;
     layouts?: string;
+    richtext?: string;
     appLayout?: string;
     page404?: string;
     loader?: string;
@@ -25,7 +20,6 @@ export interface FSXAModuleOptions {
   defaultLocale: string;
   devMode?: boolean;
   customRoutes?: string;
-  mapDataQuery: (query: RegisteredDatasetQuery) => QueryBuilderQuery[];
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -56,15 +50,6 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   );
 
   const srcDir = resolve(__dirname, "..");
-
-  // this is the default configuration
-  /**if (
-    this.options.dir.store === "store" &&
-    isDirEmptyOrNotExisting(join(this.options.srcDir, "store"))
-  ) {
-    // we are trying to extend the config
-    this.options.dir.store = join(srcDir, "store");
-  }**/
 
   this.nuxt.hook("build:before", () => {
     this.options.css.unshift(
@@ -141,7 +126,6 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         projectId: process.env.FSXA_PROJECT_ID,
         navigationService: process.env.FSXA_NAVIGATION_SERVICE,
         tenantId: process.env.FSXA_TENANT_ID,
-        mapDataQuery: options.mapDataQuery,
       },
     },
     options.logLevel,
@@ -182,10 +166,4 @@ const getConfigurationFilePath = (srcDir: string): string | null => {
     return join(srcDir, "fsxa.config.js");
   }
   return null;
-};
-
-const isDirEmptyOrNotExisting = (dirname: string) => {
-  if (!fs.existsSync(dirname)) return true;
-  const files = fs.readdirSync(dirname);
-  return files.length === 0;
 };
