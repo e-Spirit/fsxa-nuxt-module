@@ -3,7 +3,6 @@
     :devMode="devMode"
     :currentPath="this.$router.currentRoute.path"
     defaultLocale="<%= options.defaultLocale %>"
-    :globalSettingsKey="globalSettingsKey"
     :components="components"
     :handleRouteChange="handleRouteChange"
   />
@@ -73,9 +72,6 @@ export default {
   },
   props: ["devMode"],
   computed: {
-    globalSettingsKey() {
-      return "<%= options.globalSettingsKey %>" || undefined;
-    },
     components() {
       return {
         appLayout: AppLayout || undefined,

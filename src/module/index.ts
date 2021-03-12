@@ -16,7 +16,6 @@ export interface FSXAModuleOptions {
     loader?: string;
   };
   logLevel?: LogLevel;
-  globalSettingsKey?: string;
   defaultLocale: string;
   devMode?: boolean;
   customRoutes?: string;
@@ -79,7 +78,6 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     options: {
       components: options.components || {},
       defaultLocale: options.defaultLocale,
-      globalSettingsKey: options.globalSettingsKey,
     },
   });
 
