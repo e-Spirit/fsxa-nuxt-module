@@ -5,6 +5,7 @@
     defaultLocale="<%= options.defaultLocale %>"
     :components="components"
     :handleRouteChange="handleRouteChange"
+    fsTppVersion="<%= options.fsTppVersion %>"
   />
 </template>
 
