@@ -5,7 +5,6 @@ import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
 import { Dataset, FSXAApi, FSXAContentMode, LogLevel } from "fsxa-api";
-import { NuxtRouteConfig } from "@nuxt/types/config/router";
 
 export interface FSXAModuleOptions {
   components?: {
@@ -61,6 +60,7 @@ const fetchRoutesForLocales = async (fsxaAPI: FSXAApi, locales: string[]) => {
     locales.map((locale) => fetchRoutesForGivenLocale(fsxaAPI, locale)),
   );
   return [
+    "/",
     // this will remove all duplicate entries
     ...new Set(
       routes.reduce((result, localeRoutes) => [...result, ...localeRoutes], []),
