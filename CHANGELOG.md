@@ -1,3 +1,10 @@
+# [3.3.0-alpha.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.2...v3.3.0-alpha.3) (2021-04-01)
+
+
+### Bug Fixes
+
+* fix error, where availableLocales were passed in the wrong way ([ce1d24c](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ce1d24c96e640bfa641a57da2bc75d24a17d7d65))
+
 # [3.3.0-alpha.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.1...v3.3.0-alpha.2) (2021-04-01)
 
 
