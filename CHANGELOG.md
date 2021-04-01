@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.1.0...v3.2.0) (2021-03-12)
+
+
+### Features
+
+* upgrade fsxa-api and fsxa-pattern-library to newest version ([49ab441](https://github.com/e-Spirit/fsxa-nuxt-module/commit/49ab441c57348c4d0922c8d728049b40bf2e9edd))
+
 # [3.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.0.0...v3.1.0) (2020-12-14)
 
 
