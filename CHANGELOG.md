@@ -1,3 +1,10 @@
+# [3.3.0-alpha.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.2.0...v3.3.0-alpha.1) (2021-04-01)
+
+
+### Features
+
+* **i18n:** add availableLocales property and enable the usage of nuxt generate ([db204c1](https://github.com/e-Spirit/fsxa-nuxt-module/commit/db204c1bb9113737dd08d0cb2a8cc673d5621f83))
+
 # [3.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.1.0...v3.2.0) (2021-03-12)
 
 
