@@ -74,7 +74,7 @@ export default {
   props: ["devMode"],
   computed: {
     availableLocales() {
-      return <%= options.defaultLocale %> || undefined;
+      return <%= options.availableLocales %> || undefined;
     },
     components() {
       return {
