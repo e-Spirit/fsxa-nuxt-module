@@ -2,6 +2,7 @@
   <fsxa-app
     :devMode="devMode"
     :currentPath="this.$router.currentRoute.path"
+    :availableLocales="availableLocales"
     defaultLocale="<%= options.defaultLocale %>"
     :components="components"
     :handleRouteChange="handleRouteChange"
@@ -72,6 +73,9 @@ export default {
   },
   props: ["devMode"],
   computed: {
+    availableLocales() {
+      return <%= options.defaultLocale %> || undefined;
+    },
     components() {
       return {
         appLayout: AppLayout || undefined,
