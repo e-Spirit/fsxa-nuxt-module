@@ -141,7 +141,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     options: {
       components: options.components || {},
       defaultLocale: options.defaultLocale,
-      availableLocales: options.availableLocales,
+      availableLocales: `[${options.availableLocales
+        .map((locale) => `"${locale}"`)
+        .join(",")}]`,
     },
   });
 
