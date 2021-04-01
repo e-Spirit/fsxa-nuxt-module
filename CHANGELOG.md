@@ -1,3 +1,11 @@
+# [3.3.0-alpha.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.1...v3.3.0-alpha.2) (2021-04-01)
+
+
+### Bug Fixes
+
+* update fsxa-pattern-library and add "/" as path to render as well ([f0e5920](https://github.com/e-Spirit/fsxa-nuxt-module/commit/f0e59209c1949dc89668ba4627c6f50b98bfbefb))
+* **options:** fix error, where availableLocales were added in the wrong way ([df34860](https://github.com/e-Spirit/fsxa-nuxt-module/commit/df348601b8dfc089e40b39da08aac92e3c270e42))
+
 # [3.3.0-alpha.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.2.0...v3.3.0-alpha.1) (2021-04-01)
 
 
