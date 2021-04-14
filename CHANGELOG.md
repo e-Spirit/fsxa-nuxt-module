@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.2.0...v3.3.0) (2021-04-14)
+
+
+### Features
+
+* **fs-tpp-snap:** added a new entry to define the tpp-snap version ([e9dd970](https://github.com/e-Spirit/fsxa-nuxt-module/commit/e9dd97059dda4b882575b2eed11e8999c722d3f7))
+
 # [3.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.1.0...v3.2.0) (2021-03-12)
 
 
