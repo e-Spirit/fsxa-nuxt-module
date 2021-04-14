@@ -19,6 +19,7 @@ export interface FSXAModuleOptions {
   defaultLocale: string;
   devMode?: boolean;
   customRoutes?: string;
+  fsTppVersion: string;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -78,6 +79,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     options: {
       components: options.components || {},
       defaultLocale: options.defaultLocale,
+      fsTppVersion: options.fsTppVersion,
     },
   });
 
