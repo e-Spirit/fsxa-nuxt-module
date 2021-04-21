@@ -11,6 +11,7 @@
 
 <script>
 import { FSXAApp } from "fsxa-pattern-library";
+import DevModeInfo from "./DevModeInfo.vue"
 
 let AppLayout, Loader, Page404;
 <% if (options.components.appLayout) {%>AppLayout = require("<%= options.components.appLayout %>").default;<% } %>
@@ -81,6 +82,7 @@ export default {
         richtext,
         layouts,
         sections,
+        devModeInfo: DevModeInfo
       }
     }
   },

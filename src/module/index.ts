@@ -14,6 +14,7 @@ export interface FSXAModuleOptions {
     appLayout?: string;
     page404?: string;
     loader?: string;
+    devModeInfo?: string;
   };
   logLevel?: LogLevel;
   defaultLocale: string;
@@ -71,6 +72,14 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // Transpile and alias fsxa src
   this.options.alias["~fsxa"] = srcDir;
   this.options.build.transpile.push(srcDir);
+
+  this.addTemplate({
+    src: resolve(__dirname, join("..", "..", "templates", "DevModeInfo.vue")),
+    fileName: join("fsxa", "DevModeInfo.vue"),
+    options: {
+      components: options.components || {},
+    },
+  });
 
   // Add compiled IndexPage
   const compiledIndexPage = this.addTemplate({
