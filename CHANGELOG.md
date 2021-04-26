@@ -1,3 +1,10 @@
+# [3.3.0-alpha.5](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.4...v3.3.0-alpha.5) (2021-04-26)
+
+
+### Bug Fixes
+
+* update fsxa-pattern-library to newest version ([4ab73a9](https://github.com/e-Spirit/fsxa-nuxt-module/commit/4ab73a92d986ba05edd3744ddac32cc80e94fc58))
+
 # [3.3.0-alpha.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.3...v3.3.0-alpha.4) (2021-04-26)
 
 
