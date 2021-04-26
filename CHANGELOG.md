@@ -1,3 +1,10 @@
+# [3.3.0-alpha.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.3...v3.3.0-alpha.4) (2021-04-26)
+
+
+### Bug Fixes
+
+* **static:** enhance Vuex-Plugin to initialize according to the rendering mode ([0a6d95e](https://github.com/e-Spirit/fsxa-nuxt-module/commit/0a6d95eaa52eda3071e51f29f33f008748489060))
+
 # [3.3.0-alpha.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0-alpha.2...v3.3.0-alpha.3) (2021-04-01)
 
 
