@@ -199,7 +199,6 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     routes.push(...routesToAdd.map((route) => ({ route })));
   });
 
-  // Add plugin
   const compiledPlugin = this.addTemplate({
     src: resolve(__dirname, join("..", "..", "templates", "plugin.js")),
     fileName: join("fsxa.js"),
