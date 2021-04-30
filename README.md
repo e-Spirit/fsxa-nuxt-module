@@ -16,7 +16,7 @@ a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
 ```bash
 # npm
-npm install fsxa-nuxt-module --save
+npm install fsxa-nuxt-module
 
 # yarn
 yarn add fsxa-nuxt-module
@@ -66,21 +66,17 @@ export default {
 
 #### Options
 
-| Key                  | Default                 | Description                                                                                                                                                                                                                                                                    |
-| -------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| components.sections  | '~/components/sections' | The folder where all your section-components are located at. You can define an index-file which will directly map keys to section-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit. |
-| components.layouts   | '~/components/layouts'  | The folder where all your layout-components are located at. You can define an index-file which will directly map keys to layout-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.   |
-| components.appLayout | undefined               |  You can provide a component that will override the layout of the application. If you are using TypeScript you should make sure, that you extend the `FSXABaseAppLayout` that is provided by the `fsxa-pattern-library`                                                        |
-| components.loader    | undefined               |  You can provide a component that will be used while loading. If no component is returned, no loading animation is displayed.                                                                                                                                                  |
-| components.page404   | undefined               |  You can provide a component that will be used when no matching route could be found. If no component is returned, nothing will be displayed.                                                                                                                                  |
-| devMode              | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                               |
-| customRoutes         | undefined               |  You can provide a path, where your custom routes are defined.                                                                                                                                                                                                                 |
-
-### Starting Nuxt
-
-```bash
-npm run dev
-```
+| Key                  | Default                 | Description                                                                                                                                                                                                                                                                      |
+| -------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| components.sections  | '~/components/sections' | The folder where all your section-components are located at. You can define an index-file which will directly map keys to section-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.   |
+| components.richtext  | '~/components/richtext' | The folder where all your richtext-components are located at. You can define an index-file which will directly map keys to richtext-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit. |
+| components.layouts   | '~/components/layouts'  | The folder where all your layout-components are located at. You can define an index-file which will directly map keys to layout-components. If no index file exists the filenames will be transformed to snake_case and are matched against the key provided by FirstSpirit.     |
+| components.appLayout | undefined               |  You can provide a component that will override the layout of the application. If you are using TypeScript you should make sure, that you extend the `FSXABaseAppLayout` that is provided by the `fsxa-pattern-library`                                                          |
+| components.loader    | undefined               |  You can provide a component that will be used while loading. If no component is returned, no loading animation is displayed.                                                                                                                                                    |
+| components.page404   | undefined               |  You can provide a component that will be used when no matching route could be found. If no component is returned, nothing will be displayed.                                                                                                                                    |
+| devMode              | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                                 |
+| customRoutes         | undefined               |  You can provide a path, where your custom routes are defined.                                                                                                                                                                                                                   |
+| logLevel             | 3                       |  You can provide a level for the logging. <br> `0` = Info, `1` = Log, `2` = Warning, `3` = Error, `4` = None.                                                                                                                                                                    |
 
 ## Legal Notices
 
