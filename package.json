@@ -62,9 +62,9 @@
     "lint-staged": "^10.2.11",
     "prettier": "^2.1.0",
     "rimraf": "^3.0.2",
+    "semantic-release": "^17.1.1",
     "typescript": "^3.9.7",
-    "webpack": "^4.44.1",
-    "semantic-release": "^17.1.1"
+    "webpack": "^4.44.1"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -72,7 +72,9 @@
     "express": "^4.17.1",
     "fsxa-api": "^5.1.0",
     "fsxa-pattern-library": "^3.1.0",
+    "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
+    "lodash.startcase": "^4.4.0",
     "vuex": "^3.5.1"
   },
   "gitHooks": {
