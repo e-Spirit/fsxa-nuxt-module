@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0...v3.4.0) (2021-05-03)
+
+
+### Features
+
+* **devmodeinfo:** added a new template to be displayed when devMode is active ([e0fad1d](https://github.com/e-Spirit/fsxa-nuxt-module/commit/e0fad1dbc19081d05368b57240afe66116497c94))
+
 # [3.3.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.2.0...v3.3.0) (2021-04-14)
 
 
