@@ -1,3 +1,5 @@
 name: fsxa-nuxt-module
 title: FSXA Nuxt Module 
 version: '3.3.1'
+nav:
+- modules/ROOT/nav.adoc
