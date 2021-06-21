@@ -67,7 +67,6 @@
     "webpack": "^4.44.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "cross-fetch": "^3.0.5",
     "express": "^4.17.1",
     "fsxa-api": "^5.1.0",
