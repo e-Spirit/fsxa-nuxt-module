@@ -1,3 +1,10 @@
+## [3.4.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.1...v3.4.2) (2021-06-25)
+
+
+### Bug Fixes
+
+* remove unused dependencies ([2a9e221](https://github.com/e-Spirit/fsxa-nuxt-module/commit/2a9e2214ed86d516c8b5aba45cffe62cf390cc0c))
+
 ## [3.4.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.0...v3.4.1) (2021-06-25)
 
 
