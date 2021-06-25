@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.0...v3.4.1) (2021-06-25)
+
+
+### Bug Fixes
+
+* add documentation for adjusting TPP-SNAP version ([214f5af](https://github.com/e-Spirit/fsxa-nuxt-module/commit/214f5afcdb4fb967f2c988013214b80f26348a22))
+
 # [3.4.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.3.0...v3.4.0) (2021-05-03)
 
 
