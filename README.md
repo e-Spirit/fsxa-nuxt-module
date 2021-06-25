@@ -77,6 +77,7 @@ export default {
 | devMode              | false                   | Enable devMode in the `fsxa-pattern-library`. See documentation of `fsxa-pattern-library` for more information about this topic.                                                                                                                                                 |
 | customRoutes         | undefined               |  You can provide a path, where your custom routes are defined.                                                                                                                                                                                                                   |
 | logLevel             | 3                       |  You can provide a level for the logging. <br> `0` = Info, `1` = Log, `2` = Warning, `3` = Error, `4` = None.                                                                                                                                                                    |
+| fsTppVersion         | 2.2.1                   |  You can provide a version for tpp-snap. Check [this](https://www.npmjs.com/package/fs-tpp-api) out for more details.                                                                                                                                                            |
 
 ## Legal Notices
 
