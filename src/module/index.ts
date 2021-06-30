@@ -5,7 +5,6 @@ import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
 import { FSXAApi, FSXAContentMode, LogLevel } from "fsxa-api";
-import { json } from "express";
 
 export interface FSXAModuleOptions {
   components?: {
