@@ -1,3 +1,11 @@
+# [3.5.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.2...v3.5.0) (2021-07-01)
+
+
+### Features
+
+* **index:** add new fsxa-api version ([29400ef](https://github.com/e-Spirit/fsxa-nuxt-module/commit/29400ef0436f226618fe08a4f3d76b413d3a6a0f))
+* **index:** added new fsxa-api version ([26291e3](https://github.com/e-Spirit/fsxa-nuxt-module/commit/26291e32b7c9db89bf6049e5436986f5462f60c5))
+
 ## [3.4.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.1...v3.4.2) (2021-06-25)
 
 
