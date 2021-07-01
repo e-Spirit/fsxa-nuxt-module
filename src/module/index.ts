@@ -135,6 +135,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         projectId: process.env.FSXA_PROJECT_ID,
         navigationService: process.env.FSXA_NAVIGATION_SERVICE,
         tenantId: process.env.FSXA_TENANT_ID,
+        remotes: process.env.FSXA_REMOTES
+          ? JSON.parse(process.env.FSXA_REMOTES)
+          : {},
       },
     },
     options.logLevel,
