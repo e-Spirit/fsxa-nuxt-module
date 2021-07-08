@@ -21,7 +21,8 @@
     "semantic-release": "semantic-release",
     "precommit": "lint-staged",
     "prepush": "npm run build",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
+    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
+    "prepare": "husky install"
   },
   "license": "Apache-2.0",
   "commitlint": {
@@ -48,7 +49,7 @@
     "@semantic-release/release-notes-generator": "^9.0.3",
     "@types/jest": "^26.0.23",
     "@types/lodash.merge": "^4.6.6",
-    "@types/node": "^15.12.5",
+    "@types/node": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "commitizen": "^4.2.4",
@@ -68,9 +69,11 @@
     "express": "^4.17.1",
     "fsxa-api": "^5.3.0",
     "fsxa-pattern-library": "^3.2.2",
+    "glob-parent": "^6.0.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
     "lodash.startcase": "^4.4.0",
+    "prismjs": "^1.24.1",
     "vuex": "^3.6.2"
   },
   "gitHooks": {
