@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.5.0...v3.5.1) (2021-08-16)
+
+
+### Bug Fixes
+
+* update dependencies ([#8](https://github.com/e-Spirit/fsxa-nuxt-module/issues/8)) ([ab4a52e](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ab4a52e9ab9439e9f68246af62069c97ae0b5d99))
+
 # [3.5.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.4.2...v3.5.0) (2021-07-01)
 
 
