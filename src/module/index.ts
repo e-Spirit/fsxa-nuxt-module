@@ -4,7 +4,8 @@ import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
-import { FSXAApi, FSXAContentMode, LogLevel } from "fsxa-api";
+import { FSXARemoteApi, LogLevel, NavigationItem } from "fsxa-api";
+import { FSXAContentMode } from "fsxa-api/dist/types/enums";
 
 export interface FSXAModuleOptions {
   components?: {
@@ -21,6 +22,12 @@ export interface FSXAModuleOptions {
   devMode?: boolean;
   customRoutes?: string;
   fsTppVersion: string;
+  navigationFilter?: <A = unknown, P = unknown>(
+    route: NavigationItem,
+    auth: A,
+    preFilterFetchData: P,
+  ) => boolean;
+  preFilterFetch: <T = unknown>() => Promise<T>;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -137,23 +144,17 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   if (mandatoryEnvVariables.filter((v) => v === undefined).length === 0) {
     // all env vars are defined
 
-    const fsxaAPI = new FSXAApi(
-      process.env.FSXA_MODE as FSXAContentMode,
-      {
-        mode: "remote",
-        config: {
-          apiKey: process.env.FSXA_API_KEY,
-          caas: process.env.FSXA_CAAS,
-          projectId: process.env.FSXA_PROJECT_ID,
-          navigationService: process.env.FSXA_NAVIGATION_SERVICE,
-          tenantId: process.env.FSXA_TENANT_ID,
-          remotes: process.env.FSXA_REMOTES
-            ? JSON.parse(process.env.FSXA_REMOTES)
-            : {},
-        },
-      },
-      options.logLevel,
-    );
+    const fsxaAPI = new FSXARemoteApi({
+      apikey: process.env.FSXA_API_KEY,
+      caasURL: process.env.FSXA_CAAS,
+      contentMode: process.env.FSXA_MODE as FSXAContentMode,
+      navigationServiceURL: process.env.FSXA_NAVIGATION_SERVICE,
+      projectID: process.env.FSXA_PROJECT_ID,
+      tenantID: process.env.FSXA_TENANT_ID,
+      navigationFilter: options.navigationFilter,
+      preFilterFetch: options.preFilterFetch,
+      logLevel: options.logLevel,
+    });
     const path = process.env.FSXA_API_BASE_URL
       ? `${process.env.FSXA_API_BASE_URL}/api`
       : "/api";
