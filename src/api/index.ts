@@ -1,11 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
-import { FSXAApi, FSXAApiErrors, NavigationData } from "fsxa-api";
+import { FSXAApiErrors, FSXARemoteApi, NavigationData } from "fsxa-api";
 import getExpressRouter from "fsxa-api/dist/lib/integrations/express";
 import { ServerMiddleware } from "@nuxt/types";
 require("cross-fetch/polyfill");
 
 export interface MiddlewareContext {
-  fsxaAPI: FSXAApi;
+  fsxaAPI: FSXARemoteApi;
 }
 export type CustomRouteHandler = (
   context: MiddlewareContext,
@@ -19,16 +19,15 @@ export interface CustomRoute {
   handler: CustomRouteHandler;
 }
 const generateSitemap = async (
-  fsxaAPI: FSXAApi,
+  fsxaAPI: FSXARemoteApi,
   req: Request,
   res: Response,
 ) => {
   const host = [req.protocol, "://", req.headers.host].join("");
   try {
-    const response: NavigationData | null = await fsxaAPI.fetchNavigation(
-      null,
-      req.params.language,
-    );
+    const response: NavigationData | null = await fsxaAPI.fetchNavigation({
+      locale: req.params.language,
+    });
     const locations = Object.keys(response.seoRouteMap);
     res.set("Content-Type", "text/xml");
     res.send(`<?xml version="1.0" encoding="UTF-8"?>
@@ -60,7 +59,7 @@ export interface MiddlewareOptions {
 }
 const createMiddleware = (
   options: MiddlewareOptions,
-  api: FSXAApi,
+  api: FSXARemoteApi,
 ): ServerMiddleware => {
   const middleware: ServerMiddleware = (req, res, next) => {
     const app = express();
