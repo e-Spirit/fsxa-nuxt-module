@@ -4,7 +4,8 @@ import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
-import { FSXAApi, FSXAContentMode, LogLevel } from "fsxa-api";
+import { FSXARemoteApi, LogLevel, NavigationItem } from "fsxa-api";
+import { FSXAContentMode } from "fsxa-api/dist/types/enums";
 
 export interface FSXAModuleOptions {
   components?: {
@@ -21,6 +22,12 @@ export interface FSXAModuleOptions {
   devMode?: boolean;
   customRoutes?: string;
   fsTppVersion: string;
+  navigationFilter?: <A = unknown, P = unknown>(
+    route: NavigationItem,
+    auth: A,
+    preFilterFetchData: P,
+  ) => boolean;
+  preFilterFetch: <T = unknown>() => Promise<T>;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -125,23 +132,27 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   }
 
-  const fsxaAPI = new FSXAApi(
-    process.env.FSXA_MODE as FSXAContentMode,
-    {
-      mode: "remote",
-      config: {
-        apiKey: process.env.FSXA_API_KEY,
-        caas: process.env.FSXA_CAAS,
-        projectId: process.env.FSXA_PROJECT_ID,
-        navigationService: process.env.FSXA_NAVIGATION_SERVICE,
-        tenantId: process.env.FSXA_TENANT_ID,
-        remotes: process.env.FSXA_REMOTES
-          ? JSON.parse(process.env.FSXA_REMOTES)
-          : {},
-      },
-    },
-    options.logLevel,
-  );
+  const {
+    FSXA_API_KEY,
+    FSXA_CAAS,
+    FSXA_PROJECT_ID,
+    FSXA_NAVIGATION_SERVICE,
+    FSXA_TENANT_ID,
+    FSXA_MODE,
+  } = process.env;
+
+  const fsxaAPI = new FSXARemoteApi({
+    apikey: FSXA_API_KEY,
+    caasURL: FSXA_CAAS,
+    contentMode: FSXA_MODE as FSXAContentMode,
+    navigationServiceURL: FSXA_NAVIGATION_SERVICE,
+    projectID: FSXA_PROJECT_ID,
+    tenantID: FSXA_TENANT_ID,
+    navigationFilter: options.navigationFilter,
+    preFilterFetch: options.preFilterFetch,
+    logLevel: options.logLevel,
+  });
+
   // create serverMiddleware
   this.addServerMiddleware({
     path: "/api",

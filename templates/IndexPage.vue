@@ -89,7 +89,7 @@ export default {
   methods: {
     handleRouteChange(route) {
       this.$router.push({ path: route });
-    },
+    }
   },
 };
 </script>
