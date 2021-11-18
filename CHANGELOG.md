@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.5.1...v3.6.0) (2021-11-18)
+
+
+### Features
+
+* **customization:** implement possibility to customize the middleware path ([b2014a2](https://github.com/e-Spirit/fsxa-nuxt-module/commit/b2014a20dc67c88f9b62e55a52ee80920c1ce1a3))
+
 ## [3.5.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.5.0...v3.5.1) (2021-08-16)
 
 
