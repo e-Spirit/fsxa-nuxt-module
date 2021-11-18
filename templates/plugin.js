@@ -1,13 +1,13 @@
 import { getFSXAModule } from "fsxa-pattern-library";
 
 export default function (ctx, inject) {
+  const baseURL = `http://${process.env.NUXT_HOST || "localhost"}:${process.env.NUXT_PORT || 3000}`
+  const path = process.env.FSXA_API_BASE_URL ? `/${process.env.FSXA_API_BASE_URL}/api/fsxa` : "/api/fsxa"
   const fsxaModule = getFSXAModule(process.env.FSXA_MODE, {
     mode: "proxy",
     baseUrl: {
-      client: "/api/fsxa",
-      server: `http://${process.env.NUXT_HOST || "localhost"}:${
-        process.env.NUXT_PORT || 3000
-      }/api/fsxa`,
+      client: path,
+      server: baseURL + path
     },
     logLevel: "<%= options.logLevel %>",
   });

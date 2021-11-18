@@ -143,8 +143,11 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     options.logLevel,
   );
   // create serverMiddleware
+  const path = process.env.FSXA_API_BASE_URL
+    ? `${process.env.FSXA_API_BASE_URL}/api`
+    : "/api";
   this.addServerMiddleware({
-    path: "/api",
+    path,
     handler: createMiddleware(
       {
         customRoutes,
