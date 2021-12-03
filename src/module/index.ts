@@ -125,36 +125,49 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   }
 
-  const fsxaAPI = new FSXAApi(
-    process.env.FSXA_MODE as FSXAContentMode,
-    {
-      mode: "remote",
-      config: {
-        apiKey: process.env.FSXA_API_KEY,
-        caas: process.env.FSXA_CAAS,
-        projectId: process.env.FSXA_PROJECT_ID,
-        navigationService: process.env.FSXA_NAVIGATION_SERVICE,
-        tenantId: process.env.FSXA_TENANT_ID,
-        remotes: process.env.FSXA_REMOTES
-          ? JSON.parse(process.env.FSXA_REMOTES)
-          : {},
-      },
-    },
-    options.logLevel,
-  );
-  // create serverMiddleware
-  const path = process.env.FSXA_API_BASE_URL
-    ? `${process.env.FSXA_API_BASE_URL}/api`
-    : "/api";
-  this.addServerMiddleware({
-    path,
-    handler: createMiddleware(
+  const mandatoryEnvVariables = [
+    process.env.FSXA_MODE,
+    process.env.FSXA_API_KEY,
+    process.env.FSXA_CAAS,
+    process.env.FSXA_PROJECT_ID,
+    process.env.FSXA_NAVIGATION_SERVICE,
+    process.env.FSXA_TENANT_ID,
+  ];
+
+  if (mandatoryEnvVariables.filter((v) => v === undefined).length === 0) {
+    // all env vars are defined
+
+    const fsxaAPI = new FSXAApi(
+      process.env.FSXA_MODE as FSXAContentMode,
       {
-        customRoutes,
+        mode: "remote",
+        config: {
+          apiKey: process.env.FSXA_API_KEY,
+          caas: process.env.FSXA_CAAS,
+          projectId: process.env.FSXA_PROJECT_ID,
+          navigationService: process.env.FSXA_NAVIGATION_SERVICE,
+          tenantId: process.env.FSXA_TENANT_ID,
+          remotes: process.env.FSXA_REMOTES
+            ? JSON.parse(process.env.FSXA_REMOTES)
+            : {},
+        },
       },
-      fsxaAPI,
-    ),
-  });
+      options.logLevel,
+    );
+    const path = process.env.FSXA_API_BASE_URL
+      ? `${process.env.FSXA_API_BASE_URL}/api`
+      : "/api";
+    // create serverMiddleware
+    this.addServerMiddleware({
+      path,
+      handler: createMiddleware(
+        {
+          customRoutes,
+        },
+        fsxaAPI,
+      ),
+    });
+  }
 
   // Add plugin
   const compiledPlugin = this.addTemplate({
