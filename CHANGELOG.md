@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.6.0...v3.7.0) (2021-12-03)
+
+
+### Features
+
+* let apps including this module build without env variables ([#17](https://github.com/e-Spirit/fsxa-nuxt-module/issues/17)) ([12f1381](https://github.com/e-Spirit/fsxa-nuxt-module/commit/12f1381d66c82ac7e0d16068e4f663e9e8c48d71))
+
 # [3.6.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.5.1...v3.6.0) (2021-11-18)
 
 
