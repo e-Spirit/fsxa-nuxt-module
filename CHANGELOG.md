@@ -1,3 +1,16 @@
+# [4.0.0-alpha.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.7.0...v4.0.0-alpha.1) (2021-12-07)
+
+
+### Features
+
+* enable usage of navigationFilter and preFilterFetch ([#12](https://github.com/e-Spirit/fsxa-nuxt-module/issues/12)) ([b5f97c4](https://github.com/e-Spirit/fsxa-nuxt-module/commit/b5f97c4e4b7f9b44c4b6412cdbb894d7670e045b))
+
+
+### BREAKING CHANGES
+
+* The new FSXAApi classes were used and these have slightly different method
+signatures. Please read the coming migration guide in the fsxa-pwa project.
+
 # [3.7.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.6.0...v3.7.0) (2021-12-03)
 
 ### Features
