@@ -1,6 +1,6 @@
 {
   "name": "fsxa-nuxt-module",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "",
   "main": "./dist/module/index.js",
   "typings": "dist/index.d.ts",
@@ -63,8 +63,8 @@
   "dependencies": {
     "cross-fetch": "^3.1.4",
     "express": "^4.17.1",
-    "fsxa-api": "^6.0.0-alpha.2",
-    "fsxa-pattern-library": "^4.0.0-alpha.5",
+    "fsxa-api": "^6.0.0",
+    "fsxa-pattern-library": "^4.0.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
     "lodash.startcase": "^4.4.0"
