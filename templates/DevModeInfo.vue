@@ -14,7 +14,13 @@
         following mapping:
         <div style="margin-top: 1rem; position: relative">
           <span
-            style="color: gray;font-size: 14px;position: absolute;right: 10px;top: 2px;"
+            style="
+              color: gray;
+              font-size: 14px;
+              position: absolute;
+              right: 10px;
+              top: 2px;
+            "
             >{{ getPath.directory }}/index.ts</span
           >
         </div>
@@ -33,8 +39,7 @@ export default {
 </template>
 
 <script>
-import camelCase from "lodash.camelcase";
-import startCase from "lodash.startcase";
+import { camelCase, startCase } from "lodash";
 
 export default {
   props: {
