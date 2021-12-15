@@ -1,10 +1,3 @@
-# [3.8.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.7.0...v3.8.0) (2021-12-15)
-
-
-### Features
-
-* enable usage of navigationFilter and preFilterFetch ([#18](https://github.com/e-Spirit/fsxa-nuxt-module/issues/18)) ([c475a6c](https://github.com/e-Spirit/fsxa-nuxt-module/commit/c475a6c2b404194016fac688d171e99e2b4186d0)), closes [#12](https://github.com/e-Spirit/fsxa-nuxt-module/issues/12) [#16](https://github.com/e-Spirit/fsxa-nuxt-module/issues/16)
-
 # [3.7.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.6.0...v3.7.0) (2021-12-03)
 
 ### Features
