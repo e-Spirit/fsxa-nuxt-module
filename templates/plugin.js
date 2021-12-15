@@ -7,7 +7,7 @@ export default function (ctx, inject) {
   let url = path
   if (typeof window === "undefined") {
     // server-side rendering
-    url = `http://${envConfig.NUXT_HOST || "localhost"}:${envConfig.NUXT_PORT || 3000}${url}`
+    url = `${envConfig.FSXA_HOST || "localhost"}:${envConfig.FSXA_PORT || 3000}${url}`
   }
 
   const proxyApiConfig = {
