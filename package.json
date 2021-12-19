@@ -1,6 +1,6 @@
 {
   "name": "fsxa-nuxt-module",
-  "version": "3.5.1",
+  "version": "4.0.0",
   "description": "",
   "main": "./dist/module/index.js",
   "typings": "dist/index.d.ts",
@@ -34,7 +34,9 @@
   "keywords": [],
   "author": "Tobias Golbs <golbs@e-spirit.com>",
   "contributors": [
-    "Dominik Barczewski <barczewski@e-spirit.com>"
+    "Dominik Barczewski <barczewski@e-spirit.com>",
+    "Philipp Runge <p.runge@progani.com>",
+    "Nicolai Henczi <henczi@e-spirit.com>"
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
@@ -63,8 +65,8 @@
   "dependencies": {
     "cross-fetch": "^3.1.4",
     "express": "^4.17.1",
-    "fsxa-api": "^5.3.1",
-    "fsxa-pattern-library": "^3.2.4",
+    "fsxa-api": "^6.0.0",
+    "fsxa-pattern-library": "^4.0.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
     "lodash.startcase": "^4.4.0"
