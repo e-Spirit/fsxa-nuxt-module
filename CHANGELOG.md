@@ -5,6 +5,15 @@
 
 * fix protocol for api calls from localhost ([#23](https://github.com/e-Spirit/fsxa-nuxt-module/issues/23)) ([c8762e0](https://github.com/e-Spirit/fsxa-nuxt-module/commit/c8762e0b23798380232f31089eacbb299aebaa4d))
 
+
+# [4.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.8.0...v4.0.0) (2021-12-15)
+
+
+### Features
+
+* enable usage of navigationFilter and preFilterFetch ([#22](https://github.com/e-Spirit/fsxa-nuxt-module/issues/22)) ([40f3540](https://github.com/e-Spirit/fsxa-nuxt-module/commit/40f35407594bdf804d9cafb5ffc81077827246e6))
+
+
 ### BREAKING CHANGES
 
 - The original fsxa-api class was removed and the new ones FSXAProxyApi and FSXARemoteApi are used. They have slightly different, but better, method signatures. For more information, please read the migration guide in the CHANGELOG of the FSXA-API.
@@ -38,20 +47,6 @@ modules: [
     ]
 ],
 ```
-
-
-# [4.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.8.0...v4.0.0) (2021-12-15)
-
-
-### Features
-
-* enable usage of navigationFilter and preFilterFetch ([#22](https://github.com/e-Spirit/fsxa-nuxt-module/issues/22)) ([40f3540](https://github.com/e-Spirit/fsxa-nuxt-module/commit/40f35407594bdf804d9cafb5ffc81077827246e6))
-
-
-### BREAKING CHANGES
-
-* The original fsxa-api class was removed and the new ones FSXAProxyApi and FSXARemoteApi are used. Their have a slightly different, but better, method signatures. For more information, please read the migration guide in the CHANGELOG of the FSXA-API.
-* Environment variables FSXA_HOST and FSXA_PORT has be configured in your production environments. Make sure to set the variables in your PWA deployments. In testing scenarios, localhost:3000 will be used.
 
 # [3.7.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.6.0...v3.7.0) (2021-12-03)
 
