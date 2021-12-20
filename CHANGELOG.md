@@ -1,3 +1,38 @@
+### BREAKING CHANGES
+
+- The original fsxa-api class was removed and the new ones FSXAProxyApi and FSXARemoteApi are used. They have slightly different, but better, method signatures. For more information, please read the migration guide in the CHANGELOG of the FSXA-API.
+- Environment variables FSXA_HOST and FSXA_PORT have to be configured in your production environments. Make sure to set the variables in your PWA deployments. In testing scenarios, http://localhost:3000 will be used. Please read the migration guide below.
+
+### Migration Guide
+
+Since there are new environment variables, the referencing PWA's nuxt.config.ts needs to be adjusted.
+Place the following code snippet inside the NuxtConfig object:
+```typescript
+publicRuntimeConfig: {
+    FSXA_HOST: process.env.FSXA_HOST,
+    FSXA_PORT: process.env.FSXA_PORT
+},
+```
+
+It will make the environment variables FSXA_HOST and FSXA_PORT available inside your application.
+The modules array also needs this information. So add it to the modules configuration as well.
+Additionally the variables NUXT_HOST and NUXT_PORT defined in the PWA's configuration need to be handed over.
+```typescript
+modules: [
+...
+    [
+    'fsxa-nuxt-module',
+        {
+            FSXA_HOST: process.env.FSXA_HOST,
+            FSXA_PORT: process.env.FSXA_PORT,
+            NUXT_HOST: process.env.NUXT_HOST,
+            NUXT_PORT: process.env.NUXT_PORT
+        }
+    ]
+],
+```
+
+
 # [4.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v3.8.0...v4.0.0) (2021-12-15)
 
 
