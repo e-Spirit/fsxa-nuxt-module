@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.0...v4.0.1) (2021-12-20)
+
+
+### Bug Fixes
+
+* fix protocol for api calls from localhost ([#23](https://github.com/e-Spirit/fsxa-nuxt-module/issues/23)) ([c8762e0](https://github.com/e-Spirit/fsxa-nuxt-module/commit/c8762e0b23798380232f31089eacbb299aebaa4d))
+
 ### BREAKING CHANGES
 
 - The original fsxa-api class was removed and the new ones FSXAProxyApi and FSXARemoteApi are used. They have slightly different, but better, method signatures. For more information, please read the migration guide in the CHANGELOG of the FSXA-API.
