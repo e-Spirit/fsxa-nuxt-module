@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.1...v4.0.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* **plugin:** add missing contentMode parameter to getFSXAModule ([#24](https://github.com/e-Spirit/fsxa-nuxt-module/issues/24)) ([364f895](https://github.com/e-Spirit/fsxa-nuxt-module/commit/364f89519c3e1ce0e20273614932045e1a22f293))
+
 ## [4.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.0...v4.0.1) (2021-12-20)
 
 
