@@ -12,7 +12,8 @@ export default function (ctx, inject) {
 
   const proxyApiConfig = {
     url,
-    logLevel: "<%= options.logLevel %>"
+    logLevel: "<%= options.logLevel %>",
+    contentMode: envConfig.FSXA_MODE
   }
 
   const fsxaModule = getFSXAModule({mode: 'proxy', config: proxyApiConfig});

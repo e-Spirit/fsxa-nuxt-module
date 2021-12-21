@@ -26,11 +26,12 @@ Place the following code snippet inside the NuxtConfig object:
 ```typescript
 publicRuntimeConfig: {
     FSXA_HOST: process.env.FSXA_HOST,
-    FSXA_PORT: process.env.FSXA_PORT
+    FSXA_PORT: process.env.FSXA_PORT,
+    FSXA_MODE: process.env.FSXA_MODE
 },
 ```
 
-It will make the environment variables FSXA_HOST and FSXA_PORT available inside your application.
+It will make the environment variables available inside your application.
 The modules array also needs this information. So add it to the modules configuration as well.
 Additionally the variables NUXT_HOST and NUXT_PORT defined in the PWA's configuration need to be handed over.
 ```typescript
@@ -41,6 +42,7 @@ modules: [
         {
             FSXA_HOST: process.env.FSXA_HOST,
             FSXA_PORT: process.env.FSXA_PORT,
+            FSXA_MODE: process.env.FSXA_MODE,
             NUXT_HOST: process.env.NUXT_HOST,
             NUXT_PORT: process.env.NUXT_PORT
         }
