@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.3...v4.0.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* **dependencies:** update fsxa-pattern-library to enable InEdit ([#26](https://github.com/e-Spirit/fsxa-nuxt-module/issues/26)) ([567fa26](https://github.com/e-Spirit/fsxa-nuxt-module/commit/567fa2644958724cf966a7267f6b73369ce1c0ad))
+
 ## [4.0.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.2...v4.0.3) (2022-01-11)
 
 
