@@ -154,6 +154,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       navigationFilter: options.navigationFilter,
       preFilterFetch: options.preFilterFetch,
       logLevel: options.logLevel,
+      enableEventStream: !!process.env.FSXA_ENABLE_EVENT_STREAM,
     });
     const path = process.env.FSXA_API_BASE_URL
       ? `${process.env.FSXA_API_BASE_URL}/api`
