@@ -1,4 +1,5 @@
 import { getFSXAModule } from "fsxa-pattern-library";
+import { FSXAApiSingleton, FSXAProxyApi } from "fsxa-api"
 
 export default function (ctx, inject) {
   const envConfig = ctx.$config
@@ -12,6 +13,7 @@ export default function (ctx, inject) {
     contentMode: envConfig.FSXA_MODE
   }
 
+  FSXAApiSingleton.init(new FSXAProxyApi(process.client ? path : `http://localhost:3000${path}`))
   const fsxaModule = getFSXAModule({mode: 'proxy', config: proxyApiConfig});
 
   if (typeof ctx.store === "undefined") {
