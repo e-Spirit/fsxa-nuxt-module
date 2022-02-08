@@ -13,8 +13,11 @@ export default function (ctx, inject) {
     contentMode: envConfig.FSXA_MODE
   }
 
-  FSXAApiSingleton.init(new FSXAProxyApi(process.client ? path : `http://localhost:3000${path}`))
-  const fsxaModule = getFSXAModule({mode: 'proxy', config: proxyApiConfig});
+  FSXAApiSingleton.init(
+    new FSXAProxyApi(process.client ? proxyApiConfig.clientUrl : proxyApiConfig.serverUrl),
+    proxyApiConfig.logLevel,
+  )
+  const fsxaModule = getFSXAModule({ mode: 'proxy', config: proxyApiConfig });
 
   if (typeof ctx.store === "undefined") {
     throw new Error(
