@@ -65,7 +65,7 @@
   "dependencies": {
     "cross-fetch": "^3.1.4",
     "express": "^4.17.1",
-    "fsxa-pattern-library": "^6.0.0",
+    "fsxa-pattern-library": "^6.0.1",
     "fsxa-api": "^8.0.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
