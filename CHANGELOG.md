@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.0.1...v5.1.0) (2022-02-11)
+
+
+### Features
+
+* **fsxa-api:** update fsxa-api and pattern-library for references to sections ([#31](https://github.com/e-Spirit/fsxa-nuxt-module/issues/31)) ([473c9c4](https://github.com/e-Spirit/fsxa-nuxt-module/commit/473c9c4a2b11eaee0a079625662c815d076909c9))
+
 ## [5.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.0.0...v5.0.1) (2022-02-09)
 
 
