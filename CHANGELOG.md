@@ -1,3 +1,29 @@
+# [5.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.0.1...v5.1.0) (2022-02-11)
+
+
+### Features
+
+* **fsxa-api:** update fsxa-api and pattern-library for references to sections ([#31](https://github.com/e-Spirit/fsxa-nuxt-module/issues/31)) ([473c9c4](https://github.com/e-Spirit/fsxa-nuxt-module/commit/473c9c4a2b11eaee0a079625662c815d076909c9))
+
+## [5.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.0.0...v5.0.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* **fsxa-pattern-lib version:** update fsxa-pattern-library ([#30](https://github.com/e-Spirit/fsxa-nuxt-module/issues/30)) ([8e42a15](https://github.com/e-Spirit/fsxa-nuxt-module/commit/8e42a15ce244b33fa70ab2cef3b8461695f6f85d))
+
+# [5.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.5...v5.0.0) (2022-02-08)
+
+
+### Features
+
+* **env:** update fsxa dependencies and remove FSXA_HOST and FSXA_PORT ([#27](https://github.com/e-Spirit/fsxa-nuxt-module/issues/27)) ([1af8e62](https://github.com/e-Spirit/fsxa-nuxt-module/commit/1af8e628f81b233e83bb31c0aa28e6232e646ea1))
+
+
+### BREAKING CHANGES
+
+* **env:** We updated the dependency to latest fsxa-api version, introducing new "type" attribute for public interfaces. This may cause your application to break. Details how to handle this can be found in the [Changelog of the fsxa-api](https://github.com/e-Spirit/fsxa-api/blob/master/CHANGELOG.md#breaking-changes).
+
 ## [4.0.5](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v4.0.4...v4.0.5) (2022-01-14)
 
 

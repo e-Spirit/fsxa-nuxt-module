@@ -1,23 +1,24 @@
 import { getFSXAModule } from "fsxa-pattern-library";
+import { FSXAApiSingleton, FSXAProxyApi } from "fsxa-api"
 
 export default function (ctx, inject) {
   const envConfig = ctx.$config
 
   const path = `${envConfig.FSXA_API_BASE_URL ? `/${envConfig.FSXA_API_BASE_URL}` : ''}/api/fsxa`
-  let url = path
-  if (typeof window === "undefined") {
-    // server-side rendering
-    url = `${envConfig.FSXA_HOST || "http://localhost"}:${envConfig.FSXA_PORT || 3000}${url}`
-  }
 
   const proxyApiConfig = {
-    url,
+    clientUrl: path,
+    serverUrl: `http://localhost:3000${path}`,
     logLevel: "<%= options.logLevel %>",
     contentMode: envConfig.FSXA_MODE,
     enableEventStream: "<%= options.enableEventStream %>" === "true"
   }
 
-  const fsxaModule = getFSXAModule({mode: 'proxy', config: proxyApiConfig});
+  FSXAApiSingleton.init(
+    new FSXAProxyApi(process.client ? proxyApiConfig.clientUrl : proxyApiConfig.serverUrl),
+    proxyApiConfig.logLevel,
+  )
+  const fsxaModule = getFSXAModule({ mode: 'proxy', config: proxyApiConfig });
 
   if (typeof ctx.store === "undefined") {
     throw new Error(
