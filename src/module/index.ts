@@ -4,7 +4,12 @@ import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
-import { FSXARemoteApi, LogLevel, NavigationItem } from "fsxa-api";
+import {
+  FSXARemoteApi,
+  LogLevel,
+  NavigationItem,
+  RemoteProjectConfiguration,
+} from "fsxa-api";
 import { FSXAContentMode } from "fsxa-api/dist/types/enums";
 
 export interface FSXAModuleOptions {
@@ -134,34 +139,45 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     });
   }
 
+  const nuxtRuntimeConfig: Record<string, string> = {
+    ...this.options.publicRuntimeConfig,
+    ...this.options.privateRuntimeConfig,
+  };
+
   const mandatoryEnvVariables = [
-    process.env.FSXA_MODE,
-    process.env.FSXA_API_KEY,
-    process.env.FSXA_CAAS,
-    process.env.FSXA_PROJECT_ID,
-    process.env.FSXA_NAVIGATION_SERVICE,
-    process.env.FSXA_TENANT_ID,
+    nuxtRuntimeConfig.FSXA_API_KEY,
+    nuxtRuntimeConfig.FSXA_CAAS,
+    nuxtRuntimeConfig.FSXA_PROJECT_ID,
+    nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
+    nuxtRuntimeConfig.FSXA_MODE,
+    nuxtRuntimeConfig.FSXA_TENANT_ID,
   ];
 
   if (mandatoryEnvVariables.filter((v) => v === undefined).length === 0) {
     // all env vars are defined
 
     const fsxaAPI = new FSXARemoteApi({
-      apikey: process.env.FSXA_API_KEY,
-      caasURL: process.env.FSXA_CAAS,
-      contentMode: process.env.FSXA_MODE as FSXAContentMode,
-      navigationServiceURL: process.env.FSXA_NAVIGATION_SERVICE,
-      projectID: process.env.FSXA_PROJECT_ID,
-      tenantID: process.env.FSXA_TENANT_ID,
+      apikey: nuxtRuntimeConfig.FSXA_API_KEY,
+      caasURL: nuxtRuntimeConfig.FSXA_CAAS,
+      navigationServiceURL: nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
+      tenantID: nuxtRuntimeConfig.FSXA_TENANT_ID,
+      projectID: nuxtRuntimeConfig.FSXA_PROJECT_ID,
+      // Nuxt automatically JSON.parses object-like .env vars, so no parsing is needed here
+      remotes:
+        (nuxtRuntimeConfig.FSXA_REMOTES as unknown as RemoteProjectConfiguration) ||
+        {},
+      contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
       navigationFilter: options.navigationFilter,
       preFilterFetch: options.preFilterFetch,
       logLevel: options.logLevel,
     });
+
     fsxaAPI.enableEventStream(options.enableEventStream);
 
-    const path = process.env.FSXA_API_BASE_URL
-      ? `${process.env.FSXA_API_BASE_URL}/api`
+    const path = nuxtRuntimeConfig.FSXA_API_BASE_URL
+      ? `${nuxtRuntimeConfig.FSXA_API_BASE_URL}/api`
       : "/api";
+
     // create serverMiddleware
     this.addServerMiddleware({
       path,
