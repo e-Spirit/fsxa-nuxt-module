@@ -15,7 +15,10 @@ export default function (ctx, inject) {
 
   FSXAApiSingleton.init(
     new FSXAProxyApi(process.client ? proxyApiConfig.clientUrl : proxyApiConfig.serverUrl),
-    proxyApiConfig.logLevel,
+    {
+      logLevel: proxyApiConfig.logLevel,
+      enableEventStream: "<%= options.enableEventStream %>" === "true"
+    }
   )
   const fsxaModule = getFSXAModule({ mode: 'proxy', config: proxyApiConfig });
 

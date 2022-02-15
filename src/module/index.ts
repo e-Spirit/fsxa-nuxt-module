@@ -22,6 +22,7 @@ export interface FSXAModuleOptions {
   devMode?: boolean;
   customRoutes?: string;
   fsTppVersion: string;
+  enableEventStream?: boolean;
   navigationFilter?: <A = unknown, P = unknown>(
     route: NavigationItem,
     auth: A,
@@ -96,6 +97,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       components: options.components || {},
       defaultLocale: options.defaultLocale,
       fsTppVersion: options.fsTppVersion,
+      enableEventStream: options.enableEventStream,
     },
   });
 
@@ -155,6 +157,8 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       preFilterFetch: options.preFilterFetch,
       logLevel: options.logLevel,
     });
+    fsxaAPI.enableEventStream(options.enableEventStream);
+
     const path = process.env.FSXA_API_BASE_URL
       ? `${process.env.FSXA_API_BASE_URL}/api`
       : "/api";
@@ -179,6 +183,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         typeof options.logLevel !== "undefined"
           ? options.logLevel
           : "undefined",
+      enableEventStream: !!options.enableEventStream,
     },
   });
   this.options.plugins.push(resolve(this.options.buildDir, compiledPlugin.dst));

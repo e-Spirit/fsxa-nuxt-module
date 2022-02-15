@@ -78,6 +78,7 @@ export default {
 | customRoutes         | undefined               |  You can provide a path, where your custom routes are defined.                                                                                                                                                                                                                   |
 | logLevel             | 3                       |  You can provide a level for the logging. <br> `0` = Info, `1` = Log, `2` = Warning, `3` = Error, `4` = None.                                                                                                                                                                    |
 | fsTppVersion         | 2.2.1                   |  You can provide a version for tpp-snap. Check [this](https://www.npmjs.com/package/fs-tpp-api) out for more details.                                                                                                                                                            |
+| enableEventStream    | false                   |  When enabled, events for `insert`, `replace` and `delete` CaaS documents can be observed and handled. It's currently used in preview mode, to sync updated data in FirstSpirit with the CaaS and the App State.                                                                 |
 
 ## Legal Notices
 
