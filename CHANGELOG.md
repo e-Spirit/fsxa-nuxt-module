@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.1.0...v5.2.0) (2022-02-15)
+
+
+### Features
+
+* **change stream:** accessing the FSXA API EventSource ([#29](https://github.com/e-Spirit/fsxa-nuxt-module/issues/29)) ([4c3b434](https://github.com/e-Spirit/fsxa-nuxt-module/commit/4c3b4340fc69e4c77515d6a3317858c06cba8953))
+
 # [5.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.0.1...v5.1.0) (2022-02-11)
 
 
