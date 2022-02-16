@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.0...v5.2.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* pass remotes from dotenv to FSXARemoteApi creation ([#32](https://github.com/e-Spirit/fsxa-nuxt-module/issues/32)) ([8fb9275](https://github.com/e-Spirit/fsxa-nuxt-module/commit/8fb9275c4b83c2a64bb0f1572a5c8ffedbf2e75b))
+
 # [5.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.1.0...v5.2.0) (2022-02-15)
 
 
