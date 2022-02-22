@@ -1,3 +1,10 @@
+## [5.2.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.1...v5.2.2) (2022-02-22)
+
+
+### Bug Fixes
+
+* **fsxa dependencies:** update fsxa-api to 8.2.1 and fsxa-pattern-library to 6.2.1 ([#33](https://github.com/e-Spirit/fsxa-nuxt-module/issues/33)) ([152c2e4](https://github.com/e-Spirit/fsxa-nuxt-module/commit/152c2e4737f6725c5d324ec703e9b47ef38386cd))
+
 ## [5.2.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.0...v5.2.1) (2022-02-16)
 
 
