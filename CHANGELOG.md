@@ -1,3 +1,10 @@
+## [5.2.3](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.2...v5.2.3) (2022-03-02)
+
+
+### Bug Fixes
+
+* **dependencies:** performance fix for fetch project properties ([#34](https://github.com/e-Spirit/fsxa-nuxt-module/issues/34)) ([6353975](https://github.com/e-Spirit/fsxa-nuxt-module/commit/635397572c99dd99dcec4b276a67b9068873d3bb))
+
 ## [5.2.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.1...v5.2.2) (2022-02-22)
 
 
