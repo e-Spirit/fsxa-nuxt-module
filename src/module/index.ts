@@ -5,6 +5,7 @@ import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
 import {
+  CustomFilter,
   FSXARemoteApi,
   LogLevel,
   NavigationItem,
@@ -34,6 +35,7 @@ export interface FSXAModuleOptions {
     preFilterFetchData: P,
   ) => boolean;
   preFilterFetch: <T = unknown>() => Promise<T>;
+  customFilter?: CustomFilter;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -169,6 +171,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
       navigationFilter: options.navigationFilter,
       preFilterFetch: options.preFilterFetch,
+      customFilter: options.customFilter,
       logLevel: options.logLevel,
     });
 
