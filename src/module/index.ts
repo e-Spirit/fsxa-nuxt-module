@@ -1,4 +1,4 @@
-import { Module } from "@nuxt/types";
+import { Module, NuxtConfig } from "@nuxt/types";
 import { join, resolve } from "path";
 import * as fs from "fs";
 import defaults from "./defaults";
@@ -7,7 +7,8 @@ import createMiddleware, { CustomRoute } from "../api";
 import {
   FSXARemoteApi,
   LogLevel,
-  NavigationItem,
+  NavigationFilter,
+  PreFilterFetch,
   RemoteProjectConfiguration,
 } from "fsxa-api";
 import { FSXAContentMode } from "fsxa-api/dist/types/enums";
@@ -28,12 +29,8 @@ export interface FSXAModuleOptions {
   customRoutes?: string;
   fsTppVersion: string;
   enableEventStream?: boolean;
-  navigationFilter?: <A = unknown, P = unknown>(
-    route: NavigationItem,
-    auth: A,
-    preFilterFetchData: P,
-  ) => boolean;
-  preFilterFetch: <T = unknown>() => Promise<T>;
+  navigationFilter?: NavigationFilter<unknown, unknown, NuxtConfig>;
+  preFilterFetch: PreFilterFetch;
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
@@ -156,7 +153,10 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   if (mandatoryEnvVariables.filter((v) => v === undefined).length === 0) {
     // all env vars are defined
 
-    const fsxaAPI = new FSXARemoteApi({
+    const appContext = {
+      app: this,
+    };
+    const fsxaApi = new FSXARemoteApi({
       apikey: nuxtRuntimeConfig.FSXA_API_KEY,
       caasURL: nuxtRuntimeConfig.FSXA_CAAS,
       navigationServiceURL: nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
@@ -167,12 +167,22 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         (nuxtRuntimeConfig.FSXA_REMOTES as unknown as RemoteProjectConfiguration) ||
         {},
       contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
-      navigationFilter: options.navigationFilter,
-      preFilterFetch: options.preFilterFetch,
+      navigationFilter:
+        options.navigationFilter &&
+        ((route, auth, preFilterFetchData) =>
+          options.navigationFilter(
+            route,
+            auth,
+            preFilterFetchData,
+            appContext,
+          )),
+      preFilterFetch:
+        options.preFilterFetch &&
+        ((auth) => options.preFilterFetch(auth, appContext)),
       logLevel: options.logLevel,
     });
 
-    fsxaAPI.enableEventStream(options.enableEventStream);
+    fsxaApi.enableEventStream(options.enableEventStream);
 
     const path = nuxtRuntimeConfig.FSXA_API_BASE_URL
       ? `${nuxtRuntimeConfig.FSXA_API_BASE_URL}/api`
@@ -185,7 +195,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
         {
           customRoutes,
         },
-        fsxaAPI,
+        fsxaApi,
       ),
     });
   }
