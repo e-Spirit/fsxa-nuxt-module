@@ -169,16 +169,18 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
       navigationFilter:
         options.navigationFilter &&
-        ((route, auth, preFilterFetchData) =>
-          options.navigationFilter(
-            route,
-            auth,
-            preFilterFetchData,
-            appContext,
-          )),
+        ((route, auth, preFilterFetchData, context) =>
+          options.navigationFilter(route, auth, preFilterFetchData, {
+            ...(context || {}),
+            ...appContext,
+          })),
       preFilterFetch:
         options.preFilterFetch &&
-        ((auth) => options.preFilterFetch(auth, appContext)),
+        ((auth, context) =>
+          options.preFilterFetch(auth, {
+            ...(context || {}),
+            ...appContext,
+          })),
       logLevel: options.logLevel,
     });
 
