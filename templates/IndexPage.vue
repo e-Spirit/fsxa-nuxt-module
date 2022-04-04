@@ -45,25 +45,29 @@ const getComponentMap = (files) => {
   }, {});
 };
 
+/**
+ * require.context() requires arguments to be literals. Referenced variables don't work
+ * Docs: https://webpack.js.org/guides/dependency-management/#requirecontext
+ */
 const richtext = getComponentMap(
   require.context(
     "<%= options.components.richtext %>",
     true,
-    /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
+    /^(?!.*\.(spec|test)\.((j|t)sx?|vue)$).*\.((j|t)sx?|vue)$/
   )
 );
 const layouts = getComponentMap(
   require.context(
     "<%= options.components.layouts %>",
     true,
-    /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
+    /^(?!.*\.(spec|test)\.((j|t)sx?|vue)$).*\.((j|t)sx?|vue)$/
   )
 );
 const sections = getComponentMap(
   require.context(
     "<%= options.components.sections %>",
     true,
-    /[a-zA-Z0-9]+\.(js|ts|tsx|jsx|vue)$/
+    /^(?!.*\.(spec|test)\.((j|t)sx?|vue)$).*\.((j|t)sx?|vue)$/
   )
 );
 
