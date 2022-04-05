@@ -1,3 +1,10 @@
+## [5.3.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.3.0...v5.3.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* prevent test files in PWA to be recognized as components ([#37](https://github.com/e-Spirit/fsxa-nuxt-module/issues/37)) ([8bd0f9b](https://github.com/e-Spirit/fsxa-nuxt-module/commit/8bd0f9b38086b0ca427bfe732518985dfd9e7b08))
+
 # [5.3.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.2.3...v5.3.0) (2022-03-24)
 
 
