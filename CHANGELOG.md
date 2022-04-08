@@ -1,3 +1,10 @@
+## [5.3.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.3.1...v5.3.2) (2022-04-08)
+
+
+### Bug Fixes
+
+* **nuxt host/port:** use env variables when set ([#38](https://github.com/e-Spirit/fsxa-nuxt-module/issues/38)) ([aafd2b6](https://github.com/e-Spirit/fsxa-nuxt-module/commit/aafd2b6650ba0bd84402c88a482a7230d7e561ae))
+
 ## [5.3.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.3.0...v5.3.1) (2022-04-05)
 
 
