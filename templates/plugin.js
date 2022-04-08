@@ -5,10 +5,11 @@ export default function (ctx, inject) {
   const envConfig = ctx.$config
 
   const path = `${envConfig.FSXA_API_BASE_URL ? `/${envConfig.FSXA_API_BASE_URL}` : ''}/api/fsxa`
-
+  const nuxtHost = envConfig.NUXT_HOST || 'localhost'
+  const nuxtPort = envConfig.NUXT_PORT || '3000'
   const proxyApiConfig = {
     clientUrl: path,
-    serverUrl: `http://localhost:3000${path}`,
+    serverUrl: `http://${nuxtHost}:${nuxtPort}${path}`,
     logLevel: "<%= options.logLevel %>",
     contentMode: envConfig.FSXA_MODE
   }
