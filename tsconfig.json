@@ -9,8 +9,8 @@
     "declaration": true,
     "outDir": "dist",
     "skipLibCheck": true,
-    "types": ["@types/node", "@nuxt/types"]
+    "types": ["@types/node", "@nuxt/types", "@types/jest"]
   },
   "include": ["./src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "docs/examples"]
 }

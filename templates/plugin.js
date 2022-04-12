@@ -1,34 +1,55 @@
 import { getFSXAModule } from "fsxa-pattern-library";
-import { FSXAApiSingleton, FSXAProxyApi } from "fsxa-api"
+import { FSXAApiSingleton, FSXAProxyApi } from "fsxa-api";
 
-export default function (ctx, inject) {
-  const envConfig = ctx.$config
-
-  const path = `${envConfig.FSXA_API_BASE_URL ? `/${envConfig.FSXA_API_BASE_URL}` : ''}/api/fsxa`
-  const nuxtHost = envConfig.NUXT_HOST || 'localhost'
-  const nuxtPort = envConfig.NUXT_PORT || '3000'
+export default function ({ $config: runtimeConfig, store }) {
+  const path = `${
+    runtimeConfig.FSXA_API_BASE_URL ? `/${runtimeConfig.FSXA_API_BASE_URL}` : ""
+  }/api/fsxa`;
+  const nuxtHost = runtimeConfig.NUXT_HOST || 'localhost'
+  const nuxtPort = runtimeConfig.NUXT_PORT || '3000'
   const proxyApiConfig = {
     clientUrl: path,
     serverUrl: `http://${nuxtHost}:${nuxtPort}${path}`,
     logLevel: "<%= options.logLevel %>",
-    contentMode: envConfig.FSXA_MODE
+    contentMode: runtimeConfig.FSXA_MODE,
+  };
+
+  let proxyApiFilterOptions;
+
+  <% if (options.clientAccessControlConfigPath) { %>
+  const clientAccessControlContextProvider =
+    require("<%= options.clientAccessControlConfigPath %>").default
+      .clientContextProvider;
+  if (clientAccessControlContextProvider) {
+    proxyApiFilterOptions = {
+      filterContextProvider: () => {
+        return clientAccessControlContextProvider({
+          store,
+        });
+      },
+    };
   }
+  <% } %>
 
   FSXAApiSingleton.init(
-    new FSXAProxyApi(process.client ? proxyApiConfig.clientUrl : proxyApiConfig.serverUrl),
+    new FSXAProxyApi(
+      process.client ? proxyApiConfig.clientUrl : proxyApiConfig.serverUrl,
+      proxyApiConfig.logLevel,
+      proxyApiFilterOptions,
+    ),
     {
       logLevel: proxyApiConfig.logLevel,
-      enableEventStream: "<%= options.enableEventStream %>" === "true"
-    }
-  )
-  const fsxaModule = getFSXAModule({ mode: 'proxy', config: proxyApiConfig });
+      enableEventStream: "<%= options.enableEventStream %>" === "true",
+    },
+  );
+  const fsxaModule = getFSXAModule({ mode: "proxy", config: proxyApiConfig });
 
-  if (typeof ctx.store === "undefined") {
+  if (typeof store === "undefined") {
     throw new Error(
-      "[FSXA-Module] Could not find Vuex-Store. Please initialize it.",
+      "[FSXA-Module] Could not find Vuex-Store. Please initialize it.",
     );
   } else {
-    ctx.store.registerModule("fsxa", {
+    store.registerModule("fsxa", {
       namespaced: true,
       ...fsxaModule,
     });

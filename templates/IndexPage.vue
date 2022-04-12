@@ -82,7 +82,7 @@ export default {
       return {
         appLayout: AppLayout || undefined,
         loader: Loader || undefined,
-        page404: Page404 || undefined,
+        page404: Page404 || undefined,
         richtext,
         layouts,
         sections,

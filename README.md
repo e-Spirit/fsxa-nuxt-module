@@ -10,6 +10,11 @@ If you are interested in the FSXA check this
 [Overview](https://docs.e-spirit.com/module/fsxa/overview/benefits-hybrid/index.html). You can order
 a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
+### Experimental features
+
+Features marked as experimental are subject to change as long as they remain in the experimental state.
+Breaking changes to experimental features are not reflected in major version changes.
+
 ## Getting Started
 
 ### Installation
