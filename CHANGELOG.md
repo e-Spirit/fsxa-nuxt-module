@@ -1,3 +1,16 @@
+# [6.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.3.2...v6.0.0) (2022-04-21)
+
+
+### Features
+
+* **dependencies:** update fsxa-api and fsxa-pattern-library ([#40](https://github.com/e-Spirit/fsxa-nuxt-module/issues/40)) ([343c539](https://github.com/e-Spirit/fsxa-nuxt-module/commit/343c539ccbeccf872d850ec7b828448d3f011ac0))
+
+
+### BREAKING CHANGES
+
+* **dependencies:** The latest fsxa-api version has a new return type for fetchProjectProperties and a
+new format for the ImageMap type. For details, check the breaking changes in the fsxa-api.
+
 ## [5.3.2](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v5.3.1...v5.3.2) (2022-04-08)
 
 
