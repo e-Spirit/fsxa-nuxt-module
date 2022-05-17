@@ -3,12 +3,12 @@
 
 ### Features
 
-* **package.jon & package-lock.json:** update fsxa-stack dependencies to their latest version ([#45](https://github.com/e-Spirit/fsxa-nuxt-module/issues/45)) ([efd008a](https://github.com/e-Spirit/fsxa-nuxt-module/commit/efd008a8a8aee4aa9e3ee92bb413822d8199d065))
+* **package.json & package-lock.json:** update fsxa-stack dependencies to their latest version ([#45](https://github.com/e-Spirit/fsxa-nuxt-module/issues/45)) ([efd008a](https://github.com/e-Spirit/fsxa-nuxt-module/commit/efd008a8a8aee4aa9e3ee92bb413822d8199d065))
 
 
 ### BREAKING CHANGES
 
-* **package.jon & package-lock.json:** Links inside of RichtTextElements will now be mapped in the same way as the value
+* **package.json & package-lock.json:** Links inside of RichtTextElements will now be mapped in the same way as the value
 of CMS_INPUT_LINK. Please refer the FSXA-API CHANGELOG.md for more information.
 
 ## [6.0.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v6.0.0...v6.0.1) (2022-05-06)
