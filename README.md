@@ -12,8 +12,8 @@ a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
 ### Experimental features
 
-Features marked as experimental are subject to change as long as they remain in the experimental state.
-Breaking changes to experimental features are not reflected in major version changes.
+Features marked as _experimental_ are subject to change as long as they remain in the experimental state.
+Breaking changes to _experimental_ features are not reflected in major version changes.
 
 ## Getting Started
 
@@ -26,6 +26,14 @@ npm install fsxa-nuxt-module
 # yarn
 yarn add fsxa-nuxt-module
 ```
+
+### Run your tests
+
+```
+npm run test
+```
+
+> **NOTE:** Currently the tests in FSXA-Nuxt-Module are not compatible to windows environments. If you want to run the tests in windows environment, we recommend to use [WSL](https://docs.microsoft.com/windows/wsl/install).
 
 ### Initialize Store
 

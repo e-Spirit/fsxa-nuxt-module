@@ -1,12 +1,12 @@
-# How-to: Restrict access to FSXA API data
+# How-to: Restrict access to FSXA-API data
 
-This document guides you through each step that is necessary for restricting access to FSXA API data.
+This document guides you through each step that is necessary for restricting access to FSXA-API data.
 
 This guide uses the example of a group-based access control (GBAC) approach to restricting access to `NavigationItem`s and `Dataset`s based on permission data (permitted groups) included in the FSXA data. However, the same underlying approach can be used to limit access to other kinds of API data (e.g. `Page`, `GCAPage`, etc.) using different models (e.g. role-based access control, time-based access control, etc.).
 
 ## Table of Contents
 
-- [How-to: Restrict access to FSXA API data](#how-to-restrict-access-to-fsxa-api-data)
+- [How-to: Restrict access to FSXA-API data](#how-to-restrict-access-to-fsxa-api-data)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Restrict access by filtering data](#restrict-access-by-filtering-data)
@@ -20,12 +20,13 @@ This guide uses the example of a group-based access control (GBAC) approach to r
 
 ## Prerequisites
 
+- Permission information for navigation and content should be set in FirstSpirit
 - Token or session ID stored in the client (that grants access or stores identity and/or authorization related data)
-- A way to verify the identity of and retrieve authorization data for a token or session ID.
+- A solution to verify the identity of and retrieve authorization data for a token or session ID.
 
 ## Restrict access by filtering data
 
-The FSXA API provides access to two types of data, `NavigationItem`s and `CaasItem`s.
+The FSXA-API provides access to two types of data, `NavigationItem`s and `CaasItem`s.
 To restrict access to FSXA data, the two hooks `navigationItemFilter` and `caasItemFilter` can be implemented an registered.
 
 ### navigationItemFilter
@@ -90,7 +91,7 @@ async function filterCaasItems({
 
 > **NOTE:** The filter hook is also invoked for any referenced `CaasItem`s that are automatically resolved. All nested filter invocations have access to the original `filterContext`.
 
-> **NOTE:** When relying on data from any mapped data types, be careful not to use the `keys` parameter when requesting data from the FSXA API as that will skip the mapping and respond with raw CaaS data.
+> **NOTE:** When relying on data from any mapped data types, be careful not to use the `keys` parameter when requesting data from the FSXA-API as that will skip the mapping and respond with raw CaaS data.
 
 ### Register hooks
 
@@ -120,7 +121,7 @@ export default {
 
 ### Provide client-side data
 
-In most cases the `FSXAProxyApi` is used to make FSXA API requests as most code can potentially be executed in a browser context (except code that is exclusively run on server-side, such as serverMiddleware, customRoutes, etc.).
+In most cases the `FSXAProxyApi` is used to make FSXA-API requests as most code can potentially be executed in a browser context (except code that is exclusively run on server-side, such as serverMiddleware, customRoutes, etc.).
 
 To ease maintainability and avoid code duplication when it comes to attaching client side data to each call, a `clientContextProvider` can be used. The provider is automatically called for each API call and the result is attached to the request.
 
@@ -148,7 +149,7 @@ Finally, the file containing the `ClientAccessControlConfig` needs to be registe
 export default {
   ..
   apiAccessControl: {
-    server: '~/access-control/server'
+    server: '~/access-control/server',
     client: '~/access-control/client'
   },
 }
@@ -158,7 +159,7 @@ export default {
 
 ## Advanced: Activate during SSR
 
-During SSR, any client-side access control data can only be provided through the initial browser request. Although it's possibly to simply render empty content during SSR (which signals missing access) and load any restricted content after hydration, this does bypass some of the benefits of SSR.
+During SSR, any client-side access control data can only be provided through the initial browser request. Although it's possible to render empty content during SSR (which signals missing access) and load any restricted content after hydration, this does bypass some of the benefits of SSR.
 
 To ensure access control is already active during SSR, a feature can be used that all modern browsers support: cookies. Using the previous examples as reference, you need to ensure that the auth token is pre-populated in the store (e.g. using the `nuxtServerInit` hook):
 
@@ -204,14 +205,14 @@ function retrieveUserGroups(userAuthToken?: string): string[] {
 
 > **NOTE:** This example uses the npm package `node-cache` for an in-memory cache implementation. You can use any type of cache implementation that is compatible with a Node.js runtime.
 
-In addition to improving performance of multiple, subsequent API requests this can greatly impact the duration of FSXA API requests that deal with `CaaSItem`s that include a lot of references, where each reference is filtered through the authorization logic.
+In addition to improving performance of multiple, subsequent API requests this can greatly impact the duration of FSXA-API requests that deal with `CaaSItem`s that include a lot of references, where each reference is filtered through the authorization logic.
 
 ## Advanced: Enforce access control in customRoutes
 
-When using the FSXA API in `customRoutes` to provide additional functions, access to FSXA API is also automatically restricted.
-You do, however, have to provide any client context and pass it along to the respective FSXA API functions so that the access control logic can access the client context.
+When using the FSXA-API in `customRoutes` to provide additional functions, access to FSXA-API is also automatically restricted.
+You do, however, have to provide any client context and pass it along to the respective FSXA-API functions so that the access control logic can access the client context.
 
-The following `customRoute` image download example requires the call site to provide a token as part of the `Authorization` header and passes it as client (access control) context to the `fetchElement` FSXA API call.
+The following `customRoute` image download example requires the call site to provide a token as part of the `Authorization` header and passes it as client (access control) context to the `fetchElement` FSXA-API call.
 
 ```typescript
 ..
