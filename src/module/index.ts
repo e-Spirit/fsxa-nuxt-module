@@ -1,18 +1,19 @@
-import { Module, NuxtConfig } from "@nuxt/types";
+import { Module } from "@nuxt/types";
 import { join, resolve } from "path";
 import * as fs from "fs";
 import defaults from "./defaults";
 import merge from "lodash.merge";
 import createMiddleware, { CustomRoute } from "../api";
-import {
-  FSXARemoteApi,
-  LogLevel,
-  NavigationFilter,
-  PreFilterFetch,
-  RemoteProjectConfiguration,
-} from "fsxa-api";
+import { FSXARemoteApi, LogLevel, RemoteProjectConfiguration } from "fsxa-api";
 import { FSXAContentMode } from "fsxa-api/dist/types/enums";
+import { ClientAccessControlConfig, ServerAccessControlConfig } from "..";
+import { NuxtOptionsWatchers } from "@nuxt/types/config/watchers";
 
+/**
+ * @member apiAccessControl - Settings for API access control (EXPERIMENTAL)
+ * @member apiAccessControl.client - Optional path to file that exports {@link ClientAccessControlConfig ClientAccessControlConfig} (EXPERIMENTAL)
+ * @member apiAccessControl.server - Optional path to file that exports {@link ServerAccessControlConfig ServerAccessControlConfig} (EXPERIMENTAL)
+ */
 export interface FSXAModuleOptions {
   components?: {
     sections?: string;
@@ -27,19 +28,21 @@ export interface FSXAModuleOptions {
   defaultLocale: string;
   devMode?: boolean;
   customRoutes?: string;
-  fsTppVersion: string;
+  fsTppVersion?: string;
   enableEventStream?: boolean;
-  navigationFilter?: NavigationFilter<unknown, unknown, NuxtConfig>;
-  preFilterFetch: PreFilterFetch;
+  apiAccessControl?: {
+    server?: string;
+    client?: string;
+  };
 }
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
-  let configuration = {};
+  let fileConfiguration = {};
   try {
     const configFilePath = getConfigurationFilePath(this.options.srcDir);
     if (configFilePath) {
       // eslint-disable-next-line
-      configuration = require(configFilePath).default;
+      fileConfiguration = require(configFilePath).default;
       // watch config file
       if (this.nuxt.options.dev) {
         this.nuxt.options.watch.push(configFilePath);
@@ -47,7 +50,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     }
   } catch (error) {
     throw new Error(
-      `[FSXA-Module] Could not read configuration file: fsxa.config.(ts/js)`,
+      `[FSXA-Module] Could not read configuration file: fsxa.config.(ts/js): ${error.message}`,
     );
   }
 
@@ -57,7 +60,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     defaults,
     moduleOptions,
     this.options.fsxa,
-    configuration,
+    fileConfiguration,
   );
 
   const srcDir = resolve(__dirname, "..");
@@ -121,7 +124,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       options.customRoutes,
     );
     if (this.nuxt.options.dev) {
-      this.nuxt.options.watch.push(customRoutesPath);
+      addWatchIgnore(this.options.watchers, customRoutesPath);
     }
     this.options.build.transpile.push(customRoutesPath);
     // get files in folder
@@ -141,65 +144,78 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     ...this.options.privateRuntimeConfig,
   };
 
-  const mandatoryEnvVariables = [
-    nuxtRuntimeConfig.FSXA_API_KEY,
-    nuxtRuntimeConfig.FSXA_CAAS,
-    nuxtRuntimeConfig.FSXA_PROJECT_ID,
-    nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
-    nuxtRuntimeConfig.FSXA_MODE,
-    nuxtRuntimeConfig.FSXA_TENANT_ID,
+  const requiredEnvVariables = [
+    "FSXA_API_KEY",
+    "FSXA_CAAS",
+    "FSXA_PROJECT_ID",
+    "FSXA_NAVIGATION_SERVICE",
+    "FSXA_MODE",
+    "FSXA_TENANT_ID",
   ];
 
-  if (mandatoryEnvVariables.filter((v) => v === undefined).length === 0) {
-    // all env vars are defined
+  const missingEnvVariables = requiredEnvVariables.filter(
+    (v) => nuxtRuntimeConfig[v] === undefined || !nuxtRuntimeConfig[v],
+  );
+  if (missingEnvVariables.length !== 0) {
+    throw new Error(
+      `[FSXA-Module] Initialization failed. Required environment variables ${missingEnvVariables.join()} are missing.`,
+    );
+  }
 
-    const appContext = {
-      app: this,
-    };
-    const fsxaApi = new FSXARemoteApi({
-      apikey: nuxtRuntimeConfig.FSXA_API_KEY,
-      caasURL: nuxtRuntimeConfig.FSXA_CAAS,
-      navigationServiceURL: nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
-      tenantID: nuxtRuntimeConfig.FSXA_TENANT_ID,
-      projectID: nuxtRuntimeConfig.FSXA_PROJECT_ID,
-      // Nuxt automatically JSON.parses object-like .env vars, so no parsing is needed here
-      remotes:
-        (nuxtRuntimeConfig.FSXA_REMOTES as unknown as RemoteProjectConfiguration) ||
-        {},
-      contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
-      navigationFilter:
-        options.navigationFilter &&
-        ((route, auth, preFilterFetchData, context) =>
-          options.navigationFilter(route, auth, preFilterFetchData, {
-            ...(context || {}),
-            ...appContext,
-          })),
-      preFilterFetch:
-        options.preFilterFetch &&
-        ((auth, context) =>
-          options.preFilterFetch(auth, {
-            ...(context || {}),
-            ...appContext,
-          })),
-      logLevel: options.logLevel,
-    });
+  let serverAccessControlConfig: ServerAccessControlConfig<unknown> | undefined;
+  if (options.apiAccessControl?.server) {
+    const configPath = this.nuxt.resolver.resolveAlias(
+      options.apiAccessControl.server,
+    );
+    if (this.nuxt.options.dev) {
+      addWatchIgnore(this.options.watchers, configPath);
+    }
+    serverAccessControlConfig = require(configPath).default;
+  }
 
-    fsxaApi.enableEventStream(options.enableEventStream);
+  const fsxaApi = new FSXARemoteApi({
+    apikey: nuxtRuntimeConfig.FSXA_API_KEY,
+    caasURL: nuxtRuntimeConfig.FSXA_CAAS,
+    navigationServiceURL: nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
+    tenantID: nuxtRuntimeConfig.FSXA_TENANT_ID,
+    projectID: nuxtRuntimeConfig.FSXA_PROJECT_ID,
+    // Nuxt automatically JSON.parses object-like .env vars, so no parsing is needed here
+    remotes:
+      (nuxtRuntimeConfig.FSXA_REMOTES as unknown as RemoteProjectConfiguration) ||
+      {},
+    contentMode: nuxtRuntimeConfig.FSXA_MODE as FSXAContentMode,
+    filterOptions: {
+      navigationItemFilter: serverAccessControlConfig?.navigationItemFilter,
+      caasItemFilter: serverAccessControlConfig?.caasItemFilter,
+    },
+    logLevel: options.logLevel,
+  });
 
-    const path = nuxtRuntimeConfig.FSXA_API_BASE_URL
-      ? `${nuxtRuntimeConfig.FSXA_API_BASE_URL}/api`
-      : "/api";
+  fsxaApi.enableEventStream(options.enableEventStream);
 
-    // create serverMiddleware
-    this.addServerMiddleware({
-      path,
-      handler: createMiddleware(
-        {
-          customRoutes,
-        },
-        fsxaApi,
-      ),
-    });
+  const path = nuxtRuntimeConfig.FSXA_API_BASE_URL
+    ? `${nuxtRuntimeConfig.FSXA_API_BASE_URL}/api`
+    : "/api";
+
+  // create serverMiddleware
+  this.addServerMiddleware({
+    path,
+    handler: createMiddleware(
+      {
+        customRoutes,
+      },
+      fsxaApi,
+    ),
+  });
+
+  if (options.apiAccessControl?.client) {
+    const clientAccessControlConfigPath = this.nuxt.resolver.resolveAlias(
+      options.apiAccessControl.client,
+    );
+    if (this.nuxt.options.dev) {
+      addWatchIgnore(this.options.watchers, clientAccessControlConfigPath);
+    }
+    this.options.build.transpile.push(clientAccessControlConfigPath);
   }
 
   // Add plugin
@@ -212,6 +228,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
           ? options.logLevel
           : "undefined",
       enableEventStream: !!options.enableEventStream,
+      clientAccessControlConfigPath: options.apiAccessControl?.client,
     },
   });
   this.options.plugins.push(resolve(this.options.buildDir, compiledPlugin.dst));
@@ -229,3 +246,14 @@ const getConfigurationFilePath = (srcDir: string): string | null => {
   }
   return null;
 };
+
+function addWatchIgnore(watchers: NuxtOptionsWatchers, configPath: string) {
+  const ignored = watchers.webpack.ignored;
+  if (Array.isArray(ignored)) {
+    watchers.webpack.ignored = [...ignored, new RegExp(configPath)];
+  } else if (typeof ignored === "string") {
+    watchers.webpack.ignored = [`${ignored}`, new RegExp(configPath)];
+  } else if (typeof ignored === "undefined" || ignored == null) {
+    watchers.webpack.ignored = [new RegExp(configPath)];
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "idMap": {
+    "5a7cdf48-5031-4fcd-b6c7-99e802d0ce57": {
+      "id": "5a7cdf48-5031-4fcd-b6c7-99e802d0ce57",
+      "parentIds": [],
+      "label": "Homepage",
+      "contentReference": "/enterprise-dev/d8db6f24-0bf8-4f48-be47-5e41d8d427fc.preview.content/c8a158a3-2ba3-427c-a7e4-7d41d9844464.de_DE",
+      "caasDocumentId": "c8a158a3-2ba3-427c-a7e4-7d41d9844464",
+      "seoRoute": "/Homepage/",
+      "seoRouteRegex": null,
+      "customData": null,
+      "permissions": {
+        "allowed": ["customers", "registered"],
+        "forbidden": []
+      }
+    },
+    "c4bfd8cd-9daf-44ab-92d1-c4a38c1088ec": {
+      "id": "c4bfd8cd-9daf-44ab-92d1-c4a38c1088ec",
+      "parentIds": [],
+      "label": "Registered",
+      "contentReference": "/enterprise-dev/d8db6f24-0bf8-4f48-be47-5e41d8d427fc.preview.content/d1fbc50e-7d44-413b-9e22-93d396773148.de_DE",
+      "caasDocumentId": "d1fbc50e-7d44-413b-9e22-93d396773148",
+      "seoRoute": "/Registered/",
+      "seoRouteRegex": null,
+      "customData": null,
+      "permissions": {
+        "allowed": ["registered"],
+        "forbidden": []
+      }
+    }
+  },
+  "seoRouteMap": {
+    "/Homepage/": "5a7cdf48-5031-4fcd-b6c7-99e802d0ce57",
+    "/Registered/": "c4bfd8cd-9daf-44ab-92d1-c4a38c1088ec"
+  },
+  "structure": [
+    {
+      "id": "5a7cdf48-5031-4fcd-b6c7-99e802d0ce57",
+      "children": []
+    },
+    {
+      "id": "c4bfd8cd-9daf-44ab-92d1-c4a38c1088ec",
+      "children": []
+    }
+  ],
+  "pages": { "index": "/Homepage/" },
+  "meta": {
+    "identifier": {
+      "tenantId": "enterprise-dev-navigationservice",
+      "navigationId": "preview.d8db6f24-0bf8-4f48-be47-5e41d8d427fc",
+      "languageId": "de_DE"
+    }
+  }
+}

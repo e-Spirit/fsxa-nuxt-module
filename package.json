@@ -15,8 +15,10 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:local": "rimraf fsxa-nuxt-module-*.tgz && npm version prerelease --no-git-tag-version --preid alpha && npm run build && npm pack",
+    "test": "jest --runInBand --coverage=false",
     "commit": "git-cz",
     "semantic-release": "semantic-release",
+    "semantic-release:dry-run": "semantic-release --dry-run",
     "precommit": "lint-staged",
     "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
   },
@@ -39,8 +41,11 @@
     "Nicolai Henczi <henczi@e-spirit.com>"
   ],
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^13.1.0",
+    "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.15.8",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
@@ -48,6 +53,7 @@
     "@semantic-release/github": "^7.2.3",
     "@semantic-release/npm": "^7.1.3",
     "@semantic-release/release-notes-generator": "^9.0.3",
+    "@types/jest": "^27.4.0",
     "@types/lodash.merge": "^4.6.6",
     "@types/node": "^14.17.9",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
@@ -56,20 +62,24 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
+    "jest": "^27.4.7",
     "lint-staged": "^10.2.11",
+    "nuxt": "^2.15.8",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.4.4",
+    "ts-jest": "^27.1.3",
     "typescript": "^3.9.7"
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
     "express": "^4.17.1",
-    "fsxa-api": "^10.0.0",
-    "fsxa-pattern-library": "^8.0.0",
+    "fsxa-api": "^10.1.0",
+    "fsxa-pattern-library": "^8.1.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.merge": "^4.6.2",
-    "lodash.startcase": "^4.4.0"
+    "lodash.startcase": "^4.4.0",
+    "vuex": "^3.6.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

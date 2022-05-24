@@ -1,0 +1,61 @@
+{
+  "_id": "d8db6f24-0bf8-4f48-be47-5e41d8d427fc.preview.content",
+  "_returned": 1,
+  "_embedded": {
+    "rh:doc": [
+      {
+        "_id": "e4d1dead-7b0b-4128-b446-5e08bb0c37fa.de_DE",
+        "fsType": "Media",
+        "name": "registered_only_image",
+        "displayName": "Smarthome Panel links",
+        "identifier": "e4d1dead-7b0b-4128-b446-5e08bb0c37fa",
+        "uid": "registered_only_image",
+        "uidType": "MEDIASTORE_LEAF",
+        "fileName": "registered_only_image",
+        "languageDependent": false,
+        "mediaType": "PICTURE",
+        "description": null,
+        "resolutionsMetaData": {
+          "ORIGINAL": {
+            "fileSize": 8380040,
+            "extension": "jpeg",
+            "mimeType": "image/jpeg",
+            "width": 5998,
+            "height": 3998,
+            "url": "https://some-cdn.tld/d8db6f24-0bf8-4f48-be47-5e41d8d427fc/preview/Images/registered-only-image.jpeg"
+          }
+        },
+        "metaFormData": {
+          "md_permissions": {
+            "fsType": "CMS_INPUT_PERMISSION",
+            "name": "md_permissions",
+            "value": [
+              {
+                "activity": null,
+                "allowed": [
+                  {
+                    "groupName": "Registrierte Mitglieder",
+                    "groupPath": "/GroupsFile/registered"
+                  }
+                ],
+                "forbidden": []
+              }
+            ]
+          }
+        },
+        "changeInfo": {
+          "date": "2021-01-22T15:05Z",
+          "revision": 1713
+        },
+        "locale": {
+          "identifier": "DE",
+          "country": "DE",
+          "language": "de"
+        },
+        "_etag": {
+          "$oid": "619cf0f79c386a17f767ce20"
+        }
+      }
+    ]
+  }
+}
