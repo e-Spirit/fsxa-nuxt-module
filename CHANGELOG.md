@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.0.0...v7.1.0) (2022-05-24)
+
+
+### Features
+
+* **access-control:** add support for controlling access to FSXA-API data ([#42](https://github.com/e-Spirit/fsxa-nuxt-module/issues/42)) ([de6bec2](https://github.com/e-Spirit/fsxa-nuxt-module/commit/de6bec299e5c00a411360f76ed45ed2afff2c254))
+
 # [7.0.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v6.0.1...v7.0.0) (2022-05-17)
 
 
