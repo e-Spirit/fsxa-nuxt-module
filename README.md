@@ -12,7 +12,7 @@ a demo [online](https://www.e-spirit.com/us/specialpages/forms/on-demand-demo/).
 
 ### Experimental features
 
-Features marked as _experimental_ are subject to change as long as they remain in the experimental state.
+Features marked as _experimental_ are subject to change as long as they remain in the _experimental_ state.
 Breaking changes to _experimental_ features are not reflected in major version changes.
 
 ## Getting Started
