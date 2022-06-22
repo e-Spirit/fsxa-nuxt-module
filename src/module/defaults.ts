@@ -10,5 +10,6 @@ const defaults: Partial<FSXAModuleOptions> = {
     richtext: path.join("~", "components", "fsxa", "richtext"),
   },
   devMode: false,
+  useErrorBoundaryWrapper: true,
 };
 export default defaults;

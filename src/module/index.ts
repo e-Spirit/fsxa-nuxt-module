@@ -27,6 +27,7 @@ export interface FSXAModuleOptions {
   logLevel?: LogLevel;
   defaultLocale: string;
   devMode?: boolean;
+  useErrorBoundaryWrapper?: boolean;
   customRoutes?: string;
   fsTppVersion?: string;
   enableEventStream?: boolean;
@@ -114,6 +115,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       component: resolve(this.options.buildDir, compiledIndexPage.dst),
       props: {
         devMode: options.devMode,
+        useErrorBoundaryWrapper: options.useErrorBoundaryWrapper,
       },
     });
   };
