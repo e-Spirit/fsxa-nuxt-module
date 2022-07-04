@@ -1,6 +1,7 @@
 <template>
   <fsxa-app
     :devMode="devMode"
+    :useErrorBoundaryWrapper="useErrorBoundaryWrapper"
     :currentPath="this.$router.currentRoute.path"
     defaultLocale="<%= options.defaultLocale %>"
     :components="components"
@@ -76,7 +77,7 @@ export default {
   components: {
     "fsxa-app": FSXAApp,
   },
-  props: ["devMode"],
+  props: ["devMode", "useErrorBoundaryWrapper"],
   computed: {
     components() {
       return {
