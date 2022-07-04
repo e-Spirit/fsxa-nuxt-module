@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.1.4...v7.2.0) (2022-07-04)
+
+
+### Features
+
+* **indexpage:** add new flag useErrorBoundaryWrapper ([#51](https://github.com/e-Spirit/fsxa-nuxt-module/issues/51)) ([f8f1bc4](https://github.com/e-Spirit/fsxa-nuxt-module/commit/f8f1bc47ea46c0cdc6b79580821b650aa46d52b1))
+
 ## [7.1.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.1.3...v7.1.4) (2022-07-01)
 
 
