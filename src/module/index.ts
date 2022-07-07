@@ -189,6 +189,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       caasItemFilter: serverAccessControlConfig?.caasItemFilter,
     },
     logLevel: options.logLevel,
+    isCacheEnabled:
+      nuxtRuntimeConfig.FSXA_API_CACHE_ENABLED as unknown as boolean,
+    cacheTimeInS: parseInt(nuxtRuntimeConfig.FSXA_API_CACHE_TIME_IN_S),
   });
 
   fsxaApi.enableEventStream(options.enableEventStream);
