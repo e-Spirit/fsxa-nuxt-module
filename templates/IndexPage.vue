@@ -7,6 +7,7 @@
     :components="components"
     :handleRouteChange="handleRouteChange"
     fsTppVersion="<%= options.fsTppVersion %>"
+    fsTppCdnUrl="<%= options.fsTppCdnUrl %>"
   />
 </template>
 
