@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Enable version updates for fsxa dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "fsxa-*"
+  # Enable security updates for all dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0
