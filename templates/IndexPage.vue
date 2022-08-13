@@ -6,8 +6,8 @@
     defaultLocale="<%= options.defaultLocale %>"
     :components="components"
     :handleRouteChange="handleRouteChange"
+    fsTppApiUrl="<%= options.fsTppApiUrl %>"
     fsTppVersion="<%= options.fsTppVersion %>"
-    fsTppCdnUrl="<%= options.fsTppCdnUrl %>"
   />
 </template>
 

@@ -29,8 +29,8 @@ export interface FSXAModuleOptions {
   devMode?: boolean;
   useErrorBoundaryWrapper?: boolean;
   customRoutes?: string;
+  fsTppApiUrl?: string;
   fsTppVersion?: string;
-  fsTppCdnUrl?: string;
   enableEventStream?: boolean;
   apiAccessControl?: {
     server?: string;
@@ -103,8 +103,8 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     options: {
       components: options.components || {},
       defaultLocale: options.defaultLocale,
+      fsTppApiUrl: options.fsTppApiUrl,
       fsTppVersion: options.fsTppVersion,
-      fsTppCdnUrl: options.fsTppCdnUrl,
       enableEventStream: options.enableEventStream,
     },
   });
