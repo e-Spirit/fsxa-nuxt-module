@@ -6,7 +6,7 @@
     defaultLocale="<%= options.defaultLocale %>"
     :components="components"
     :handleRouteChange="handleRouteChange"
-    fsTppApiUrl="<%= options.fsTppApiUrl %>"
+    liveEditUrl="<%= options.liveEditUrl %>"
     fsTppVersion="<%= options.fsTppVersion %>"
   />
 </template>
