@@ -24,6 +24,7 @@ export interface FSXAModuleOptions {
     loader?: string;
     devModeInfo?: string;
   };
+  maxReferenceDepth?: number;
   logLevel?: LogLevel;
   defaultLocale: string;
   devMode?: boolean;
@@ -182,6 +183,9 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     caasURL: nuxtRuntimeConfig.FSXA_CAAS,
     navigationServiceURL: nuxtRuntimeConfig.FSXA_NAVIGATION_SERVICE,
     tenantID: nuxtRuntimeConfig.FSXA_TENANT_ID,
+    maxReferenceDepth:
+      Number(nuxtRuntimeConfig.FSXA_MAX_REFERENCE_DEPTH) ||
+      options.maxReferenceDepth,
     projectID: nuxtRuntimeConfig.FSXA_PROJECT_ID,
     // Nuxt automatically JSON.parses object-like .env vars, so no parsing is needed here
     remotes:
