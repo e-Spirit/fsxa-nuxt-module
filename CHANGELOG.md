@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.6.0...v7.7.0) (2022-09-01)
+
+
+### Features
+
+* **fs-tpp-api:** add FSXA_SNAP_URL env variable ([#61](https://github.com/e-Spirit/fsxa-nuxt-module/issues/61)) ([d309b9e](https://github.com/e-Spirit/fsxa-nuxt-module/commit/d309b9e6487716d4536ffeb200a46791954c5e7a))
+
 # [7.6.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.5.1...v7.6.0) (2022-08-26)
 
 
