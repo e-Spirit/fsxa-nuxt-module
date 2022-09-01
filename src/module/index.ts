@@ -13,6 +13,7 @@ import { NuxtOptionsWatchers } from "@nuxt/types/config/watchers";
  * @member apiAccessControl - Settings for API access control (EXPERIMENTAL)
  * @member apiAccessControl.client - Optional path to file that exports {@link ClientAccessControlConfig ClientAccessControlConfig} (EXPERIMENTAL)
  * @member apiAccessControl.server - Optional path to file that exports {@link ServerAccessControlConfig ServerAccessControlConfig} (EXPERIMENTAL)
+ * @member fsTppVersion DEPRECATED: use `FSXA_SNAP_URL` instead {@link https://github.com/e-Spirit/fsxa-pattern-library/#snap-url}
  */
 export interface FSXAModuleOptions {
   components?: {

@@ -42,7 +42,11 @@ export default function ({ $config: runtimeConfig, store }) {
       enableEventStream: "<%= options.enableEventStream %>" === "true",
     },
   );
-  const fsxaModule = getFSXAModule({ mode: "proxy", config: proxyApiConfig });
+  const fsxaModule = getFSXAModule({
+    mode: "proxy",
+    config: proxyApiConfig,
+    snapUrl: runtimeConfig.FSXA_SNAP_URL,
+  });
 
   if (typeof store === "undefined") {
     throw new Error(
