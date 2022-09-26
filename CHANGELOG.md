@@ -1,3 +1,10 @@
+# [7.9.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.8.0...v7.9.0) (2022-09-26)
+
+
+### Features
+
+* **dependencies): feat(dependencies:** update to latest fsxa-pattern-library ([#68](https://github.com/e-Spirit/fsxa-nuxt-module/issues/68)) ([ea988d2](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ea988d2b0d8b76bc7508f77934c81b5bb23be7c5))
+
 # [7.8.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.7.0...v7.8.0) (2022-09-22)
 
 
