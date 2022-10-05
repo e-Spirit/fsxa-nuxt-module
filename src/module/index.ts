@@ -38,6 +38,9 @@ export interface FSXAModuleOptions {
     client?: string;
   };
 }
+
+const LOG_LEVEL: string = process.env.FSXA_LOG_LEVEL;
+
 const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
   // try to access config file
   let fileConfiguration = {};
@@ -46,6 +49,10 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
     if (configFilePath) {
       // eslint-disable-next-line
       fileConfiguration = require(configFilePath).default;
+      // ENV variable will take the priority
+      if (LOG_LEVEL && LOG_LEVEL in LogLevel) {
+        fileConfiguration["logLevel"] = LOG_LEVEL;
+      }
       // watch config file
       if (this.nuxt.options.dev) {
         this.nuxt.options.watch.push(configFilePath);
