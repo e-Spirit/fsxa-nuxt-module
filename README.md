@@ -94,6 +94,8 @@ export default {
 | fsTppVersion            | undefined               | _DEPRECATED: use [`FSXA_SNAP_URL`](https://github.com/e-Spirit/fsxa-pattern-library/#snap-url) instead_ You can provide a version for tpp-snap. Check [this](https://www.npmjs.com/package/fs-tpp-api) out for more details.                                                     |
 | enableEventStream       | false                   | When enabled, events for `insert`, `replace` and `delete` CaaS documents can be observed and handled. It's currently used in preview mode, to sync updated data in FirstSpirit with the CaaS and the App State.                                                                  |
 
+The LogLevel can also be set by providing an env variable called `FSXA_LOG_LEVEL`. This will be priorized over the configuration file option.
+
 ## Legal Notices
 
 FSXA-Nuxt-Module is a product of [Crownpeak Technology GmbH](http://www.e-spirit.com), Dortmund, Germany.
