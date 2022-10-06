@@ -1,3 +1,10 @@
+# [7.12.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.11.0...v7.12.0) (2022-10-06)
+
+
+### Features
+
+* **loglevel:** set the loglevel via env variables ([#70](https://github.com/e-Spirit/fsxa-nuxt-module/issues/70)) ([fc80394](https://github.com/e-Spirit/fsxa-nuxt-module/commit/fc803941491a3dff683a657a604b5c11de01fd7b))
+
 # [7.11.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.10.0...v7.11.0) (2022-10-05)
 
 
