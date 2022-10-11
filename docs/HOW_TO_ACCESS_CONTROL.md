@@ -62,28 +62,39 @@ As seen in this example, the hook also retrieves a `filterContext` parameter, wh
 
 The same approach can be used for `CaasItem`s using the `caasItemFilter` hook, as demonstrated in the following example. The hook is invoked for the API functions `fetchElement`, `fetchByFilter` and `fetchProjectProperties`.
 
+By default, references inside `CaasItem`s to other documents are resolved. However, this behavior can be problematic if these references are cyclical and point to themselves. Therefore the Fsxa Api supports two scenarios that your filter implementation should consider:
+
+1. Getting data in denormalized form: all references inside `mappedItems` are resolved.
+2. Getting data in normalized form: all references inside `mappedItems` are kept as references, additionally a `referenceMap` and a `resolvedReferences` object containing all resolved references is passed to the `filterCaasItems` function. You can use the `denormalizeResolvedReferences(mappedItems, referenceMap, resolvedReferences)` util, to populate `mappedItems` with all references.
+
 ```typescript
 async function filterCaasItems({
-  caasItems,
+  mappedItems,
+  referenceMap,
+  resolvedReferences,
   filterContext: userAuthContext,
-}: CaasItemFilterParams<UserAuthClientContext>): Promise<(CaasItem | any)[]> {
+}: CaasItemFilterParams<UserAuthClientContext>): Promise<MapResponse> {
   const userGroups = retrieveUserGroups(userAuthContext?.token);
-  return caasItems.filter((item: CaasItem) => {
-    switch (item.type) {
-      case "Dataset":
-        const datasetPermission = item.data.tt_permissions as DataEntry;
-        if (datasetPermission && isPermission(datasetPermission)) {
-          const firstPermission = datasetPermission.value[0];
-          const allowedGroups = firstPermission.allowed.map(
-            (group) => group.groupId,
-          );
-          return isAllowed(userGroups, allowedGroups);
-        }
-        return false;
-      default:
-        return true;
-    }
-  });
+  return {
+    mappedItems: mappedItems.filter((item: CaasItem) => {
+      switch (item.type) {
+        case "Dataset":
+          const datasetPermission = item.data.tt_permissions as DataEntry;
+          if (datasetPermission && isPermission(datasetPermission)) {
+            const firstPermission = datasetPermission.value[0];
+            const allowedGroups = firstPermission.allowed.map(
+              (group) => group.groupId,
+            );
+            return isAllowed(userGroups, allowedGroups);
+          }
+          return false;
+        default:
+          return true;
+      }
+    }),
+    referenceMap,
+    resolvedReferences,
+  };
 }
 ```
 

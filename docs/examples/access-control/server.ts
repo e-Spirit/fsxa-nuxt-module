@@ -6,6 +6,7 @@ import {
   NavigationItemFilterParams,
   CaasItemFilterParams,
 } from "fsxa-api";
+import { MapResponse } from "fsxa-api/dist/types/modules";
 import { ServerAccessControlConfig } from "fsxa-nuxt-module";
 import { UserAuthClientContext } from "./common";
 
@@ -23,26 +24,32 @@ async function filterNavigationItems({
 }
 
 async function filterCaasItems({
-  caasItems,
+  mappedItems,
+  referenceMap,
+  resolvedReferences,
   filterContext: userAuthContext,
-}: CaasItemFilterParams<UserAuthClientContext>): Promise<(CaasItem | any)[]> {
+}: CaasItemFilterParams<UserAuthClientContext>): Promise<MapResponse> {
   const userGroups = retrieveUserGroups(userAuthContext?.token);
-  return caasItems.filter((item: CaasItem) => {
-    switch (item.type) {
-      case "Dataset":
-        const datasetPermission = item.data.tt_permissions as DataEntry;
-        if (datasetPermission && isPermission(datasetPermission)) {
-          const firstPermission = datasetPermission.value[0];
-          const allowedGroups = firstPermission.allowed.map(
-            (group) => group.groupId,
-          );
-          return isAllowed(userGroups, allowedGroups);
-        }
-        return false;
-      default:
-        return true;
-    }
-  });
+  return {
+    mappedItems: mappedItems.filter((item: CaasItem) => {
+      switch (item.type) {
+        case "Dataset":
+          const datasetPermission = item.data.tt_permissions as DataEntry;
+          if (datasetPermission && isPermission(datasetPermission)) {
+            const firstPermission = datasetPermission.value[0];
+            const allowedGroups = firstPermission.allowed.map(
+              (group) => group.groupId,
+            );
+            return isAllowed(userGroups, allowedGroups);
+          }
+          return false;
+        default:
+          return true;
+      }
+    }),
+    referenceMap,
+    resolvedReferences,
+  };
 }
 
 function isAllowed(userGroups: string[], allowedGroups: string[]): boolean {
