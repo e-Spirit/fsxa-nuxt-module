@@ -62,7 +62,7 @@ As seen in this example, the hook also retrieves a `filterContext` parameter, wh
 
 The same approach can be used for `CaasItem`s using the `caasItemFilter` hook, as demonstrated in the following example. The hook is invoked for the API functions `fetchElement`, `fetchByFilter` and `fetchProjectProperties`.
 
-By default, references inside `CaasItem`s to other documents are resolved. However, this behavior can be problematic if these references are cyclical and point to themselves. Therefore the Fsxa Api supports two scenarios that your filter implementation should consider:
+By default, references inside `CaasItem`s to other documents are resolved. However, this behaviour can be problematic if these references are cyclical and point to themselves. Therefore the FSXA-API supports two scenarios that your filter implementation should consider:
 
 1. Getting data in denormalized form: all references inside `mappedItems` are resolved.
 2. Getting data in normalized form: all references inside `mappedItems` are kept as references, additionally a `referenceMap` and a `resolvedReferences` object containing all resolved references is passed to the `filterCaasItems` function. You can use the `denormalizeResolvedReferences(mappedItems, referenceMap, resolvedReferences)` util, to populate `mappedItems` with all references.
