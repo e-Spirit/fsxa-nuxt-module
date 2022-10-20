@@ -67,6 +67,8 @@ By default, references inside `CaasItem`s to other documents are resolved. Howev
 1. Getting data in denormalized form: all references inside `mappedItems` are resolved.
 2. Getting data in normalized form: all references inside `mappedItems` are kept as references, additionally a `referenceMap` and a `resolvedReferences` object containing all resolved references is passed to the `filterCaasItems` function. You can use the `denormalizeResolvedReferences(mappedItems, referenceMap, resolvedReferences)` util, to populate `mappedItems` with all references.
 
+Important: If you apply a filter you have to apply it to `mappedItems` AND `resolvedReferences` otherwise sensitive data could still be transferred.
+
 ```typescript
 async function filterCaasItems({
   mappedItems,
@@ -75,25 +77,38 @@ async function filterCaasItems({
   filterContext: userAuthContext,
 }: CaasItemFilterParams<UserAuthClientContext>): Promise<MapResponse> {
   const userGroups = retrieveUserGroups(userAuthContext?.token);
-  return {
-    mappedItems: mappedItems.filter((item: CaasItem) => {
-      switch (item.type) {
-        case "Dataset":
-          const datasetPermission = item.data.tt_permissions as DataEntry;
-          if (datasetPermission && isPermission(datasetPermission)) {
-            const firstPermission = datasetPermission.value[0];
-            const allowedGroups = firstPermission.allowed.map(
-              (group) => group.groupId,
-            );
-            return isAllowed(userGroups, allowedGroups);
-          }
-          return false;
-        default:
-          return true;
-      }
+  const filteredMappedItems = mappedItems.filter((item) => {
+    if (item.type === "Image") {
+      const permissions = item.meta.md_permissions;
+      if (permissions) {
+        const firstPermission = permissions.value[0];
+        const allowedGroups = firstPermission.allowed.map(
+          (group) => group.groupId,
+        );
+        return isAllowed(userGroups, allowedGroups);
+      } else return false;
+    } else return true;
+  });
+
+  const filteredResolvedReferences = Object.fromEntries(
+    Object.entries(resolvedReferences).filter(([key, item]) => {
+      if (item.type === "Image") {
+        const permissions = item.meta.md_permissions;
+        if (permissions) {
+          const firstPermission = permissions.value[0];
+          const allowedGroups = firstPermission.allowed.map(
+            (group) => group.groupId,
+          );
+          return isAllowed(userGroups, allowedGroups);
+        } else return false;
+      } else return true;
     }),
+  );
+
+  return {
+    mappedItems: filteredMappedItems,
     referenceMap,
-    resolvedReferences,
+    resolvedReferences: filteredResolvedReferences,
   };
 }
 ```
