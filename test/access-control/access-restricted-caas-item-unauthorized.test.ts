@@ -28,6 +28,8 @@ describe("access to caas items with unauthorized user", () => {
     const text = await result.text();
     expect(text).toContain("pageData:");
     expect(text).not.toContain("registered-only-image");
-    expect(text).not.toContain("e4d1dead-7b0b-4128-b446-5e08bb0c37fa");
+    expect(text).toContain(
+      "REFERENCED-ITEM-e4d1dead-7b0b-4128-b446-5e08bb0c37fa", // does not contain content, only referencing string
+    );
   });
 });

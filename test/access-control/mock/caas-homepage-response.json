@@ -1,61 +1,68 @@
 {
-  "_id": "c8a158a3-2ba3-427c-a7e4-7d41d9844464.de_DE",
-  "fsType": "PageRef",
-  "name": "home",
-  "displayName": "Homepage",
-  "identifier": "c8a158a3-2ba3-427c-a7e4-7d41d9844464",
-  "uid": "home",
-  "uidType": "SITESTORE_LEAF",
-  "metaFormData": {},
-  "page": {
-    "fsType": "Page",
-    "name": "index",
-    "displayName": "Homepage",
-    "identifier": "c2f85ffc-cdbe-47c1-a7de-b75947810b56",
-    "translated": true,
-    "uid": "index",
-    "uidType": "PAGESTORE",
-    "template": {
-      "fsType": "PageTemplate",
-      "name": "Homepage",
-      "displayName": "Homepage",
-      "identifier": "713bc395-202f-481e-a95c-2d573136e221",
-      "uid": "homepage",
-      "uidType": "TEMPLATESTORE"
-    },
-    "formData": {
-      "pt_text": {
-        "fsType": "CMS_INPUT_TEXT",
-        "name": "pt_text",
-        "value": "This is some text"
-      },
-      "pt_image": {
-        "fsType": "FS_REFERENCE",
-        "name": "pt_image",
-        "value": {
-          "fsType": "Media",
-          "name": "registered_only_image",
-          "identifier": "e4d1dead-7b0b-4128-b446-5e08bb0c37fa",
-          "uid": "registered_only_image",
-          "uidType": "MEDIASTORE_LEAF",
-          "mediaType": "PICTURE",
-          "url": "/d8db6f24-0bf8-4f48-be47-5e41d8d427fc.preview.content/e4d1dead-7b0b-4128-b446-5e08bb0c37fa.de_DE"
+  "_returned": 1,
+  "_embedded": {
+    "rh:doc": [
+      {
+        "_id": "c8a158a3-2ba3-427c-a7e4-7d41d9844464.de_DE",
+        "fsType": "PageRef",
+        "name": "home",
+        "displayName": "Homepage",
+        "identifier": "c8a158a3-2ba3-427c-a7e4-7d41d9844464",
+        "uid": "home",
+        "uidType": "SITESTORE_LEAF",
+        "metaFormData": {},
+        "page": {
+          "fsType": "Page",
+          "name": "index",
+          "displayName": "Homepage",
+          "identifier": "c2f85ffc-cdbe-47c1-a7de-b75947810b56",
+          "translated": true,
+          "uid": "index",
+          "uidType": "PAGESTORE",
+          "template": {
+            "fsType": "PageTemplate",
+            "name": "Homepage",
+            "displayName": "Homepage",
+            "identifier": "713bc395-202f-481e-a95c-2d573136e221",
+            "uid": "homepage",
+            "uidType": "TEMPLATESTORE"
+          },
+          "formData": {
+            "pt_text": {
+              "fsType": "CMS_INPUT_TEXT",
+              "name": "pt_text",
+              "value": "This is some text"
+            },
+            "pt_image": {
+              "fsType": "FS_REFERENCE",
+              "name": "pt_image",
+              "value": {
+                "fsType": "Media",
+                "name": "registered_only_image",
+                "identifier": "e4d1dead-7b0b-4128-b446-5e08bb0c37fa",
+                "uid": "registered_only_image",
+                "uidType": "MEDIASTORE_LEAF",
+                "mediaType": "PICTURE",
+                "url": "/d8db6f24-0bf8-4f48-be47-5e41d8d427fc.preview.content/e4d1dead-7b0b-4128-b446-5e08bb0c37fa.de_DE"
+              }
+            }
+          },
+          "metaFormData": {},
+          "children": []
+        },
+        "changeInfo": {
+          "date": "2022-03-23T13:51Z",
+          "revision": 14361
+        },
+        "locale": {
+          "identifier": "DE",
+          "country": "DE",
+          "language": "de"
+        },
+        "_etag": {
+          "$oid": "623b25eb9f70fe62877d592f"
         }
       }
-    },
-    "metaFormData": {},
-    "children": []
-  },
-  "changeInfo": {
-    "date": "2022-03-23T13:51Z",
-    "revision": 14361
-  },
-  "locale": {
-    "identifier": "DE",
-    "country": "DE",
-    "language": "de"
-  },
-  "_etag": {
-    "$oid": "623b25eb9f70fe62877d592f"
+    ]
   }
 }

@@ -6,6 +6,7 @@ import {
   NavigationItemFilterParams,
   CaasItemFilterParams,
 } from "fsxa-api";
+import { MapResponse } from "fsxa-api/dist/types/modules";
 import { ServerAccessControlConfig } from "fsxa-nuxt-module";
 import { UserAuthClientContext } from "./common";
 
@@ -23,26 +24,45 @@ async function filterNavigationItems({
 }
 
 async function filterCaasItems({
-  caasItems,
+  mappedItems,
+  referenceMap,
+  resolvedReferences,
   filterContext: userAuthContext,
-}: CaasItemFilterParams<UserAuthClientContext>): Promise<(CaasItem | any)[]> {
+}: CaasItemFilterParams<UserAuthClientContext>): Promise<MapResponse> {
   const userGroups = retrieveUserGroups(userAuthContext?.token);
-  return caasItems.filter((item: CaasItem) => {
-    switch (item.type) {
-      case "Dataset":
-        const datasetPermission = item.data.tt_permissions as DataEntry;
-        if (datasetPermission && isPermission(datasetPermission)) {
-          const firstPermission = datasetPermission.value[0];
+  const filteredMappedItems = mappedItems.filter((item) => {
+    if (item.type === "Image") {
+      const permissions = item.meta.md_permissions;
+      if (permissions) {
+        const firstPermission = permissions.value[0];
+        const allowedGroups = firstPermission.allowed.map(
+          (group) => group.groupId,
+        );
+        return isAllowed(userGroups, allowedGroups);
+      } else return false;
+    } else return true;
+  });
+
+  const filteredResolvedReferences = Object.fromEntries(
+    Object.entries(resolvedReferences).filter(([key, item]) => {
+      if (item.type === "Image") {
+        const permissions = item.meta.md_permissions;
+        if (permissions) {
+          const firstPermission = permissions.value[0];
           const allowedGroups = firstPermission.allowed.map(
             (group) => group.groupId,
           );
           return isAllowed(userGroups, allowedGroups);
-        }
-        return false;
-      default:
-        return true;
-    }
-  });
+        } else return false;
+      } else return true;
+    }),
+  );
+
+  return {
+    mappedItems: filteredMappedItems,
+    referenceMap,
+    resolvedReferences: filteredResolvedReferences,
+  };
 }
 
 function isAllowed(userGroups: string[], allowedGroups: string[]): boolean {
