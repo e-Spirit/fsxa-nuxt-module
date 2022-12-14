@@ -1,3 +1,10 @@
+# [7.14.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.13.4...v7.14.0) (2022-12-14)
+
+
+### Features
+
+* **content-projections:** add new content projection routing ([#87](https://github.com/e-Spirit/fsxa-nuxt-module/issues/87)) ([033ceae](https://github.com/e-Spirit/fsxa-nuxt-module/commit/033ceae2ecf5b078bca48c201434b6737b73d6e5))
+
 ## [7.13.4](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.13.3...v7.13.4) (2022-11-25)
 
 
