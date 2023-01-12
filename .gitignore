@@ -1,6 +1,8 @@
 dist
 node_modules
 .idea
+*.iml
 .vscode
 *.tgz
 .nuxt
+coverage
