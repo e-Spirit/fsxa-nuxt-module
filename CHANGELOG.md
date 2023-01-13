@@ -1,3 +1,10 @@
+# [7.15.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.14.1...v7.15.0) (2023-01-13)
+
+
+### Features
+
+* **dependencies:** update fsxa-pattern-library to latest version ([#91](https://github.com/e-Spirit/fsxa-nuxt-module/issues/91)) ([10a4cdc](https://github.com/e-Spirit/fsxa-nuxt-module/commit/10a4cdce184a7f7d341ef0584b8b1ef6e69e0cf7))
+
 ## [7.14.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.14.0...v7.14.1) (2022-12-15)
 
 
