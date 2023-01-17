@@ -1,3 +1,10 @@
+## [7.15.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.15.0...v7.15.1) (2023-01-17)
+
+
+### Bug Fixes
+
+* **defaultlocale:** support override of default locale using env variables  ([#77](https://github.com/e-Spirit/fsxa-nuxt-module/issues/77)) ([ee24e91](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ee24e91eec16dcae3c5f176245e4db933df95082))
+
 # [7.15.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.14.1...v7.15.0) (2023-01-13)
 
 
