@@ -7,6 +7,7 @@
     :components="components"
     :handleRouteChange="handleRouteChange"
     fsTppVersion="<%= options.fsTppVersion %>"
+    :customSnapHooks="customSnapHooks"
   />
 </template>
 
@@ -77,7 +78,7 @@ export default {
   components: {
     "fsxa-app": FSXAApp,
   },
-  props: ["devMode", "useErrorBoundaryWrapper"],
+  props: ["devMode", "useErrorBoundaryWrapper", "customSnapHooks"],
   computed: {
     components() {
       return {

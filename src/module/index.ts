@@ -33,6 +33,7 @@ export interface FSXAModuleOptions {
   customRoutes?: string;
   fsTppVersion?: string;
   enableEventStream?: boolean;
+  customSnapHooks?: boolean;
   apiAccessControl?: {
     server?: string;
     client?: string;
@@ -129,6 +130,7 @@ const FSXAModule: Module<FSXAModuleOptions> = function (moduleOptions) {
       props: {
         devMode: options.devMode,
         useErrorBoundaryWrapper: options.useErrorBoundaryWrapper,
+        customSnapHooks: options.customSnapHooks,
       },
     });
   };
