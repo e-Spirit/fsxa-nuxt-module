@@ -1,3 +1,10 @@
+# [7.16.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.15.1...v7.16.0) (2023-01-24)
+
+
+### Features
+
+* **tpp-snap:** support new `customSnapHooks` flag in config ([#92](https://github.com/e-Spirit/fsxa-nuxt-module/issues/92)) ([9605669](https://github.com/e-Spirit/fsxa-nuxt-module/commit/960566967cb2d90dc12cdacaa522acc83d01c1e2))
+
 ## [7.15.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.15.0...v7.15.1) (2023-01-17)
 
 
