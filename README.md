@@ -67,6 +67,7 @@ fsxa: {
 ...
 ```
 
+
 #### fsxa.config
 
 Provide your configuration by creating an fsxa.config.ts / fsxa.config.js in your root directory.
