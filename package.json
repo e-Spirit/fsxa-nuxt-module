@@ -1,6 +1,6 @@
 {
   "name": "fsxa-nuxt-module",
-  "version": "7.16.1",
+  "version": "7.16.2",
   "description": "",
   "main": "./dist/module/index.js",
   "typings": "dist/index.d.ts",
