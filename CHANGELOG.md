@@ -1,3 +1,10 @@
+## [7.17.1](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.17.0...v7.17.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* **dependencies:** update fsxa-stack to the latest dependencies ([#104](https://github.com/e-Spirit/fsxa-nuxt-module/issues/104)) ([875e8b2](https://github.com/e-Spirit/fsxa-nuxt-module/commit/875e8b2492475e3f93b9971772fd695f655eece9))
+
 # [7.17.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.16.4...v7.17.0) (2023-03-20)
 
 
