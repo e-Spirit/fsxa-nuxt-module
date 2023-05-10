@@ -64,6 +64,7 @@ const createMiddleware = (
   const middleware: ServerMiddleware = (req, res, next) => {
     const app = express();
     app.set("trust proxy", true);
+    app.disable("x-powered-by");
     app.use("/fsxa", getExpressRouter({ api }));
     (options.customRoutes || []).forEach((customRoute) => {
       app.use(customRoute.route, (req, res, next) => {
