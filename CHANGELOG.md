@@ -1,3 +1,10 @@
+# [7.18.0](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.17.5...v7.18.0) (2023-05-10)
+
+
+### Features
+
+* **middleware:** remove x-powered-by response header ([#109](https://github.com/e-Spirit/fsxa-nuxt-module/issues/109)) ([ab44738](https://github.com/e-Spirit/fsxa-nuxt-module/commit/ab447380294b3d9d9dcb8b3d9f7be67f3b6a6495))
+
 ## [7.17.5](https://github.com/e-Spirit/fsxa-nuxt-module/compare/v7.17.4...v7.17.5) (2023-05-10)
 
 
