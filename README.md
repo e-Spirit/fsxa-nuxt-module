@@ -1,3 +1,7 @@
+# :exclamation: Important Notice
+
+This repository has been deprecated and is no longer actively maintained. We recommend you use the [crownpeak-pwa-template](https://github.com/e-Spirit/crownpeak-pwa-template) instead.
+
 # FSXA-Nuxt-Module
 
 This module is integrating the [FSXA-Pattern-Library](https://github.com/e-Spirit/fsxa-pattern-library).
